@@ -12,6 +12,7 @@
 | 4   | [var/let/const](#4-varletconst)                                                  |
 | 5   | [Difference Between var, let and const](#5-difference-between-var-let-and-const) |
 | 6   | [JavaScript Data Types](#6-javascript-data-types)                                |
+| 7   | [What is String](#7-what-is-string)                                              |
 
 <!-- TOC_END -->
 
