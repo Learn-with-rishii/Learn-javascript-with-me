@@ -712,6 +712,7 @@ console.log(Array.isArray([1, 2, 3])); // true
 console.log(Array.isArray("Hello")); // false
 ```
 
+
 <!-- 1. **Array.forEach()**
 
 - The forEach() method of Array instances executes a provided function once for each array element.
