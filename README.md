@@ -4,16 +4,18 @@
 
 <!-- TOC_START -->
 
-| No. | Questions                                                                        |
-| --- | -------------------------------------------------------------------------------- |
-| 1   | [What is JavaScript?](#1-what-is-javascript)                                     |
-| 2   | [Why Study JavaScript?](#2-why-study-javascript)                                 |
-| 3   | [JavaScript Variables](#3-javascript-variables)                                  |
-| 4   | [var/let/const](#4-varletconst)                                                  |
-| 5   | [Difference Between var, let and const](#5-difference-between-var-let-and-const) |
-| 6   | [JavaScript Data Types](#6-javascript-data-types)                                |
-| 7   | [What is String](#7-what-is-string)                                              |
-| 8   | [What is Array](#8-what-is-array)                                                |
+| No. | Questions                                                                                           |
+| --- | --------------------------------------------------------------------------------------------------- |
+| 1   | [What is JavaScript?](#1-what-is-javascript)                                                        |
+| 2   | [Why Study JavaScript?](#2-why-study-javascript)                                                    |
+| 3   | [JavaScript Variables](#3-javascript-variables)                                                     |
+| 4   | [var/let/const](#4-varletconst)                                                                     |
+| 5   | [Difference Between var, let and const](#5-difference-between-var-let-and-const)                    |
+| 6   | [JavaScript Data Types](#6-javascript-data-types)                                                   |
+| 7   | [What is String](#7-what-is-string)                                                                 |
+| 8   | [What is Array](#8-what-is-array)                                                                   |
+| 9   | [What is forEach](#9-what-is-foreach)                                                               |
+| 10  | [ Differences Between `forEach()` and Other Loops](#10-differences-between-foreach-and-other-loops) |
 
 <!-- TOC_END -->
 
@@ -155,9 +157,9 @@ const date = new Date("2022-03-25");
 - JavaScript has dynamic types. This means that the same variable can be used to hold different data types:
 
 ```javascript
-let x;       // Now x is undefined
-x = 5;       // Now x is a Number
-x = "John";  // Now x is a String
+let x; // Now x is undefined
+x = 5; // Now x is a Number
+x = "John"; // Now x is a String
 ```
 
 - A string (or a text string) is a series of characters like "Rishabh Kashyap".
@@ -175,9 +177,8 @@ Template literals are string literals that allow embedded expressions (variables
 - It was introduced in ES6, which provides a more flexible and readable way to work with strings.
 
 ```javascript
-let a='GFG'
-console.log(`hello ${a}`)
-
+let a = "GFG";
+console.log(`hello ${a}`);
 ```
 
 ## 7. What is String
@@ -188,8 +189,7 @@ Strings are written with quotes. You can use single or double quotes.
 
 ```javascript
 const string1 = "A string primitive";
-const string2 = 'Also a string primitive';
-
+const string2 = "Also a string primitive";
 ```
 
 **Character access**
@@ -211,7 +211,6 @@ console.log(typeof strPrim); // "string"
 console.log(typeof strPrim2); // "string"
 console.log(typeof strPrim3); // "string"
 console.log(typeof strObj); // "object"
-
 ```
 
 **Static Method**
@@ -239,7 +238,6 @@ index = -4;
 
 console.log(`An index of ${index} returns the character ${sentence.at(index)}`);
 // Expected output: "An index of -4 returns the character d"
-
 ```
 
 - **String.charAt()**
@@ -253,7 +251,6 @@ const index = 4;
 
 console.log(`The character at index ${index} is ${sentence.charAt(index)}`);
 // Expected output: "The character at index 4 is q"
-
 ```
 
 - **String.prototype.charCodeAt()**
@@ -264,9 +261,9 @@ The charCodeAt() method of String values returns an integer between 0 and 65535
 const index = 4;
 
 console.log(
- `Character code ${sentence.charCodeAt(index)} is equal to ${sentence.charAt(
-   index,
- )}`,
+  `Character code ${sentence.charCodeAt(index)} is equal to ${sentence.charAt(
+    index
+  )}`
 );
 // Expected output: "Character code 113 is equal to q"
 ```
@@ -315,10 +312,10 @@ const sentence = "The quick brown fox jumps over the lazy dog.";
 const word = "fox";
 
 console.log(
- `The word "${word}" ${
-   sentence.includes(word) ? "is" : "is not"
- } in the sentence`,
-)
+  `The word "${word}" ${
+    sentence.includes(word) ? "is" : "is not"
+  } in the sentence`
+);
 ```
 
 - **String.indexOf()**
@@ -335,8 +332,8 @@ console.log(`The index of the first "${searchTerm}" is ${indexOfFirst}`);
 console.log(
   `The index of the second "${searchTerm}" is ${paragraph.indexOf(
     searchTerm,
-    indexOfFirst + 1,
-  )}`,
+    indexOfFirst + 1
+  )}`
 );
 // Expected output: "The index of the second "dog" is 38"
 ```
@@ -349,7 +346,7 @@ const paragraph = "I think Ruth's dog is cuter than your dog!";
 const searchTerm = "dog";
 
 console.log(
-  `Index of the last ${searchTerm} is ${paragraph.lastIndexOf(searchTerm)}`,
+  `Index of the last ${searchTerm} is ${paragraph.lastIndexOf(searchTerm)}`
 );
 // Expected output: "Index of the last "dog" is 38"
 ```
@@ -526,7 +523,6 @@ console.log(greeting);
 
 console.log(greeting.trim());
 // Expected output: "Hello world!";
-
 ```
 
 - **String.trimEnd()**
@@ -556,7 +552,6 @@ console.log(greeting.trimStart());
 - **String.valueOf()**
 
 ```javascript
-
 const stringObj = new String("foo");
 console.log(stringObj.valueOf());
 // Expected output: "foo"
@@ -630,7 +625,6 @@ let arr = [10, 20, 30, 20];
 console.log(arr.indexOf(20)); // Output: 1
 console.log(arr.lastIndexOf(20)); // Output: 3
 console.log(arr.includes(40)); // Output: false
-
 ```
 
 **3. Iterating Through Arrays**
@@ -712,8 +706,9 @@ console.log(Array.isArray([1, 2, 3])); // true
 console.log(Array.isArray("Hello")); // false
 ```
 
+## 9. What is forEach
 
-<!-- 1. **Array.forEach()**
+**Array.forEach()**
 
 - The forEach() method of Array instances executes a provided function once for each array element.
 
@@ -726,8 +721,47 @@ array1.forEach((element) => console.log(element));
 ```
 
 - **Syntax**
+
   - forEach(callbackFn)
-  - forEach(callbackFn, thisArg) -->
+  - forEach(callbackFn, thisArg)
+  - array.forEach(callback(currentValue, index, array), thisArg);
+
+  ## 10. Differences Between `forEach()` and Other Loops
+
+| Feature            | `forEach()`      | `for` Loop        | `map()`          |
+| ------------------ | ---------------- | ----------------- | ---------------- |
+| **Return Value**   | `undefined`      | N/A               | New Array        |
+| **Break/Continue** | ❌ (Not Allowed) | ✅ (Allowed)      | ❌ (Not Allowed) |
+| **Use Case**       | Side Effects     | General Iteration | Transform Data   |
+
+🔹` forEach()`: Elements par operation perform karta hai, kuch return nahi karta.
+
+🔹 `map()`: Naya transformed array return karta hai.
+
+## 11. What is Map in JavaScript
+
+A Map is a built-in JavaScript object that stores key-value pairs where:
+
+- Keys can be of any type (Unlike objects where keys are only strings).
+- Maintains the order of elements.
+- Does not allow duplicate keys (Each key is unique).
+
+```
+let myMap = new Map(); // Creating an empty Map
+myMap.set("name", "Rishabh");
+myMap.set(1, "One"); // Number as key
+myMap.set(true, "Boolean Key"); // Boolean as key
+
+console.log(myMap);
+// Output: Map(3) { 'name' => 'Rishabh', 1 => 'One', true => 'Boolean Key' }
+```
+
+**`map()` vs `forEach()`**
+| Feature | `map()` | `forEach()` |
+|-----------------------------|---------------|-----------------------------|
+| **Returns a new array?** | ✅ Yes | ❌ No |
+| **Can modify original array?** | ❌ No | ✅ Yes |
+| **Used for transformation?** | ✅ Yes | ❌ No (only for iteration) |
 
 <!-- ### Learn-javascript-with-me
 Learn-javascript-with-me
