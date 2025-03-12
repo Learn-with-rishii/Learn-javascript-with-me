@@ -4,18 +4,23 @@
 
 <!-- TOC_START -->
 
-| No. | Questions                                                                                           |
-| --- | --------------------------------------------------------------------------------------------------- |
-| 1   | [What is JavaScript?](#1-what-is-javascript)                                                        |
-| 2   | [Why Study JavaScript?](#2-why-study-javascript)                                                    |
-| 3   | [JavaScript Variables](#3-javascript-variables)                                                     |
-| 4   | [var/let/const](#4-varletconst)                                                                     |
-| 5   | [Difference Between var, let and const](#5-difference-between-var-let-and-const)                    |
-| 6   | [JavaScript Data Types](#6-javascript-data-types)                                                   |
-| 7   | [What is String](#7-what-is-string)                                                                 |
-| 8   | [What is Array](#8-what-is-array)                                                                   |
-| 9   | [What is forEach](#9-what-is-foreach)                                                               |
-| 10  | [ Differences Between `forEach()` and Other Loops](#10-differences-between-foreach-and-other-loops) |
+| No. | Questions                                                                                                |
+| --- | -------------------------------------------------------------------------------------------------------- |
+| 1   | [What is JavaScript?](#1-what-is-javascript)                                                             |
+| 2   | [Why Study JavaScript?](#2-why-study-javascript)                                                         |
+| 3   | [JavaScript Variables](#3-javascript-variables)                                                          |
+| 4   | [var/let/const](#4-varletconst)                                                                          |
+| 5   | [Difference Between var, let and const](#5-difference-between-var-let-and-const)                         |
+| 6   | [JavaScript Data Types](#6-javascript-data-types)                                                        |
+| 7   | [What is String](#7-what-is-string)                                                                      |
+| 8   | [What is Array](#8-what-is-array)                                                                        |
+| 9   | [What is forEach](#9-what-is-foreach)                                                                    |
+| 10  | [ Differences Between `forEach()` and Other Loops](#10-differences-between-foreach-and-other-loops)      |
+| 11  | [ What is Map in JavaScript](#11-what-is-map-in-javascript)                                              |
+| 12  | [What is the filter Function](#12-what-is-the-filter-function)                                           |
+| 13  | [ Difference between filter , map , foreach](#13-difference-between-filter--map--foreach)                |
+| 14  | [ What is the reduce Function](#14-what-is-the-reduce-function)                                          |
+| 15  | [Difference Between `reduce()` vs `map()` vs `filter()`](#15-difference-between-reduce-vs-map-vs-filter) |
 
 <!-- TOC_END -->
 
@@ -34,11 +39,15 @@
 - The Second Revision ES6 (2015)
 - The Yearly Additions (2016, 2017 ... 2021, 2022)
 
+[🔝 Back to Top](#table-of-contents)
+
 ## 2. Why Study JavaScript
 
 - HTML to define the content of web pages.
 - CSS to specify the layout of web pages.
 - JavaScript to program the behavior of web pages.
+
+[🔝 Back to Top](#table-of-contents)
 
 ## 3. JavaScript Variables
 
@@ -50,6 +59,8 @@ Variables in JavaScript can be declared using var, let, or const. JavaScript is 
 - Using var
 - Using let
 - Using const
+
+[🔝 Back to Top](#table-of-contents)
 
 ## 4. var/let/const
 
@@ -89,6 +100,8 @@ console.log(a);
 console.log(b);
 ```
 
+[🔝 Back to Top](#table-of-contents)
+
 ## 5. Difference Between var, let and const
 
 | Variable | Scope | Redeclare | Reassign | Hoisted |
@@ -106,6 +119,8 @@ console.log(b);
 | **Reassignment**   | ✅ Allowed             | ✅ Allowed                  | ❌ Not Allowed              |
 | **Redeclaration**  | ✅ Allowed             | ❌ Not Allowed              | ❌ Not Allowed              |
 | **Initialization** | Optional               | Optional                    | Mandatory                   |
+
+[🔝 Back to Top](#table-of-contents)
 
 ## 6. JavaScript Data Types
 
@@ -170,7 +185,9 @@ Strings are written with quotes. You can use single or double quotes.
 
 Numbers can be written with, or without decimals.
 
-## 8. What is Template Literal
+[🔝 Back to Top](#table-of-contents)
+
+**What is Template Literal**
 
 Template literals are string literals that allow embedded expressions (variables) into your code. They are enclosed by backticks (`) instead of single (‘) or double (“) quotes.
 
@@ -180,6 +197,8 @@ Template literals are string literals that allow embedded expressions (variables
 let a = "GFG";
 console.log(`hello ${a}`);
 ```
+
+[🔝 Back to Top](#table-of-contents)
 
 ## 7. What is String
 
@@ -559,6 +578,8 @@ console.log(stringObj.valueOf());
 
 ---
 
+[🔝 Back to Top](#table-of-contents)
+
 ## 8. What is Array
 
 An array in JavaScript is a special data structure used to store multiple values in a single variable.
@@ -706,6 +727,8 @@ console.log(Array.isArray([1, 2, 3])); // true
 console.log(Array.isArray("Hello")); // false
 ```
 
+[🔝 Back to Top](#table-of-contents)
+
 ## 9. What is forEach
 
 **Array.forEach()**
@@ -726,6 +749,8 @@ array1.forEach((element) => console.log(element));
   - forEach(callbackFn, thisArg)
   - array.forEach(callback(currentValue, index, array), thisArg);
 
+  [🔝 Back to Top](#table-of-contents)
+
   ## 10. Differences Between `forEach()` and Other Loops
 
 | Feature            | `forEach()`      | `for` Loop        | `map()`          |
@@ -738,6 +763,8 @@ array1.forEach((element) => console.log(element));
 
 🔹 `map()`: Naya transformed array return karta hai.
 
+[🔝 Back to Top](#table-of-contents)
+
 ## 11. What is Map in JavaScript
 
 A Map is a built-in JavaScript object that stores key-value pairs where:
@@ -747,13 +774,26 @@ A Map is a built-in JavaScript object that stores key-value pairs where:
 - Does not allow duplicate keys (Each key is unique).
 
 ```
-let myMap = new Map(); // Creating an empty Map
-myMap.set("name", "Rishabh");
-myMap.set(1, "One"); // Number as key
-myMap.set(true, "Boolean Key"); // Boolean as key
+let numbers = [1, 2, 3, 4];
 
-console.log(myMap);
-// Output: Map(3) { 'name' => 'Rishabh', 1 => 'One', true => 'Boolean Key' }
+// Using map() to double each number
+let doubled = numbers.map(num => num * 2);
+
+console.log(doubled); // Output: [2, 4, 6, 8]
+console.log(numbers); // Original array remains unchanged: [1, 2, 3, 4]
+
+```
+
+```
+let numbers = [10, 20, 30];
+
+let mappedArray = numbers.map((num, index, arr) => {
+    return `Index ${index}: ${num * 2}`;
+});
+
+console.log(mappedArray);
+// Output: ["Index 0: 20", "Index 1: 40", "Index 2: 60"]
+
 ```
 
 **`map()` vs `forEach()`**
@@ -762,6 +802,105 @@ console.log(myMap);
 | **Returns a new array?** | ✅ Yes | ❌ No |
 | **Can modify original array?** | ❌ No | ✅ Yes |
 | **Used for transformation?** | ✅ Yes | ❌ No (only for iteration) |
+
+[🔝 Back to Top](#table-of-contents)
+
+## 12. What is the filter Function
+
+The filter() function is a built-in array method in JavaScript that creates a new array containing only the elements that satisfy a given condition.
+
+- Does not modify the original array.
+- Returns a new array with filtered elements.
+- Used for removing unwanted data from an array.
+
+`**Syntax:**
+
+array.filter(function(element, index, array) {
+
+    return condition; // Only elements where condition is true will be included
+
+});`
+
+```
+let numbers = [1, 2, 3, 4, 5, 6];
+
+// Filter even numbers
+let evenNumbers = numbers.filter(num => num % 2 === 0);
+
+console.log(evenNumbers); // Output: [2, 4, 6]
+```
+
+```
+let numbers = [10, 20, 30, 40, 50];
+
+// Filter numbers at even indexes
+let filtered = numbers.filter((num, index) => index % 2 === 0);
+
+console.log(filtered); // Output: [10, 30, 50]
+```
+
+[🔝 Back to Top](#table-of-contents)
+
+## 13. Difference between filter , map , foreach
+
+| Feature                     | `filter()`               | `map()`             | `forEach()`                   |
+| --------------------------- | ------------------------ | ------------------- | ----------------------------- |
+| **Purpose**                 | Returns a filtered array | Transforms elements | Just loops through elements   |
+| **Returns a new array?**    | ✅ Yes                   | ✅ Yes              | ❌ No                         |
+| **Changes original array?** | ❌ No                    | ❌ No               | ✅ Yes (if modified manually) |
+
+[🔝 Back to Top](#table-of-contents)
+
+## 14. What is the reduce Function
+
+The reduce() function is a higher-order array method in JavaScript that reduces an array to a single value by applying a function to each element.
+
+- Used for sum, product, concatenation, flattening arrays, and more.
+- Takes an accumulator (a running total) and each element of the array.
+- Can return a number, string, object, or even another array.
+
+**Syntax:**
+
+array.reduce(function(accumulator, currentValue, index, array) {
+
+return newAccumulator;
+
+}, initialValue);
+
+**or**
+
+array.reduce((acc, curr) => newAcc, initialValue);
+
+```
+let numbers = [1, 2, 3, 4, 5];
+
+// Sum of all numbers
+let sum = numbers.reduce((acc, num) => acc + num, 0);
+
+console.log(sum); // Output: 15
+```
+
+**How It Works Internally:**
+
+| Step | `acc` (Accumulator) | `num` (Current Element) | Calculation |
+| ---- | ------------------- | ----------------------- | ----------- |
+| 1    | 0                   | 1                       | 0 + 1 = 1   |
+| 2    | 1                   | 2                       | 1 + 2 = 3   |
+| 3    | 3                   | 3                       | 3 + 3 = 6   |
+| 4    | 6                   | 4                       | 6 + 4 = 10  |
+| 5    | 10                  | 5                       | 10 + 5 = 15 |
+
+[🔝 Back to Top](#table-of-contents)
+
+## 15. Difference Between `reduce()` vs `map()` vs `filter()`
+
+| Feature                  | `reduce()`                      | `map()`             | `filter()`                            |
+| ------------------------ | ------------------------------- | ------------------- | ------------------------------------- |
+| **Purpose**              | Reduces array to a single value | Transforms elements | Filters elements based on a condition |
+| **Returns a new array?** | ❌ No (returns a single value)  | ✅ Yes              | ✅ Yes                                |
+| **Common Use**           | Summing, counting, merging      | Modifying values    | Removing unwanted elements            |
+
+[🔝 Back to Top](#table-of-contents)
 
 <!-- ### Learn-javascript-with-me
 Learn-javascript-with-me
