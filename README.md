@@ -743,6 +743,26 @@ array1.forEach((element) => console.log(element));
 // Expected output: "c"
 ```
 
+```
+const items = [
+  {
+    description: 'Apple',
+    quantity: 4,
+    price: 10
+  },
+  { description: 'Butter', quantity: 2, price: 5},
+  { description: 'Snacks', quantity: 3, price: 6}
+];
+let flag=0;
+let newarr=items.forEach((e,i)=>{
+    let sum=items[i].quantity*items[i].price;
+    flag=flag+sum;
+});
+     console.log(`Total Price : ${flag}`);
+
+<!-- Output : Total Price : 68 -->
+```
+
 - **Syntax**
 
   - forEach(callbackFn)
@@ -751,7 +771,7 @@ array1.forEach((element) => console.log(element));
 
   [🔝 Back to Top](#table-of-contents)
 
-  ## 10. Differences Between `forEach()` and Other Loops
+## 10. Differences Between `forEach()` and Other Loops
 
 | Feature            | `forEach()`      | `for` Loop        | `map()`          |
 | ------------------ | ---------------- | ----------------- | ---------------- |
@@ -767,17 +787,18 @@ array1.forEach((element) => console.log(element));
 
 ## 11. What is Map in JavaScript
 
-A Map is a built-in JavaScript object that stores key-value pairs where:
+The map() function is a built-in array method in JavaScript used to create a new array by applying a function to each element of an existing array.
 
-- Keys can be of any type (Unlike objects where keys are only strings).
-- Maintains the order of elements.
-- Does not allow duplicate keys (Each key is unique).
+Does not modify the original array.
+Returns a new array with transformed elements.
+Used for data transformation (e.g., doubling numbers, formatting strings).
 
 ```
+
 let numbers = [1, 2, 3, 4];
 
 // Using map() to double each number
-let doubled = numbers.map(num => num * 2);
+let doubled = numbers.map(num => num \* 2);
 
 console.log(doubled); // Output: [2, 4, 6, 8]
 console.log(numbers); // Original array remains unchanged: [1, 2, 3, 4]
@@ -785,15 +806,35 @@ console.log(numbers); // Original array remains unchanged: [1, 2, 3, 4]
 ```
 
 ```
+
 let numbers = [10, 20, 30];
 
 let mappedArray = numbers.map((num, index, arr) => {
-    return `Index ${index}: ${num * 2}`;
+return `Index ${index}: ${num * 2}`;
 });
 
 console.log(mappedArray);
 // Output: ["Index 0: 20", "Index 1: 40", "Index 2: 60"]
 
+```
+
+```
+const items = [
+  {
+    description: 'Apple',
+    quantity: 4,
+    price: 10
+  },
+  { description: 'Butter', quantity: 2, price: 5},
+  { description: 'Snacks', quantity: 3, price: 6}
+];
+
+let newarr=items.map((e,i)=>{
+    return items[i].quantity*items[i].price;
+});
+console.log(newarr);
+
+<!-- Output: [ 40, 10, 18 ] -->
 ```
 
 **`map()` vs `forEach()`**
@@ -813,30 +854,57 @@ The filter() function is a built-in array method in JavaScript that creates a ne
 - Returns a new array with filtered elements.
 - Used for removing unwanted data from an array.
 
-`**Syntax:**
+**Syntax:**
 
 array.filter(function(element, index, array) {
 
     return condition; // Only elements where condition is true will be included
 
-});`
+});
 
 ```
+
 let numbers = [1, 2, 3, 4, 5, 6];
 
 // Filter even numbers
 let evenNumbers = numbers.filter(num => num % 2 === 0);
 
 console.log(evenNumbers); // Output: [2, 4, 6]
+
 ```
 
 ```
+
 let numbers = [10, 20, 30, 40, 50];
 
 // Filter numbers at even indexes
 let filtered = numbers.filter((num, index) => index % 2 === 0);
 
 console.log(filtered); // Output: [10, 30, 50]
+
+```
+
+```
+const items = [
+  {
+    description: 'Apple',
+    quantity: 4,
+    price: 10
+  },
+  { description: 'Butter', quantity: 2, price: 5},
+  { description: 'Snacks', quantity: 3, price: 6}
+];
+let filteredItems=items.filter((e,i)=>{
+    return items[i].quantity>2;
+})
+console.log(items);
+console.log(filteredItems);
+
+<!-- Output : [
+  { description: 'Apple', quantity: 4, price: 10 },
+  { description: 'Snacks', quantity: 3, price: 6 }
+] -->
+
 ```
 
 [🔝 Back to Top](#table-of-contents)
@@ -872,12 +940,57 @@ return newAccumulator;
 array.reduce((acc, curr) => newAcc, initialValue);
 
 ```
+
 let numbers = [1, 2, 3, 4, 5];
 
 // Sum of all numbers
 let sum = numbers.reduce((acc, num) => acc + num, 0);
 
 console.log(sum); // Output: 15
+
+```
+
+```
+const items = [
+  {
+    description: 'Apple',
+    quantity: 4,
+    price: 10
+  },
+  { description: 'Butter', quantity: 2, price: 5},
+  { description: 'Snacks', quantity: 3, price: 6}
+];
+
+let newarr=items.map((e,i)=>{
+    return items[i].quantity*items[i].price;
+});
+
+console.log(newarr);
+
+let filteredItems=items.filter((e,i)=>{
+    return e.quantity>2;
+})
+console.log(items);
+console.log(filteredItems);
+
+
+let reduceItems=newarr.reduce((acc,c,i)=>{
+    return acc+c;
+},0)
+console.log(reduceItems);
+
+<!-- Output: [ 40, 10, 18 ]
+[
+  { description: 'Apple', quantity: 4, price: 10 },
+  { description: 'Butter', quantity: 2, price: 5 },
+  { description: 'Snacks', quantity: 3, price: 6 }
+]
+[
+  { description: 'Apple', quantity: 4, price: 10 },
+  { description: 'Snacks', quantity: 3, price: 6 }
+]
+68
+ -->
 ```
 
 **How It Works Internally:**
@@ -918,6 +1031,10 @@ console.log("Hello")
 ---
 ## 2. What is a prototype chain
 ## 3. my name is rishabh -->
+
+```
+
+```
 
 ```
 
