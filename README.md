@@ -22,6 +22,7 @@
 | 14  | [ What is the reduce Function](#14-what-is-the-reduce-function)                                          |
 | 15  | [Difference Between `reduce()` vs `map()` vs `filter()`](#15-difference-between-reduce-vs-map-vs-filter) |
 | 16  | [What is an Object in JavaScript](#16-what-is-an-object-in-javascript)                                   |
+| 17  | [for...in Loop / for...of Loop / Array.from() in js](#17-forin-loop--forof-loop--arrayfrom-in-js)        |
 
 <!-- TOC_END -->
 
@@ -1247,6 +1248,143 @@ console.log(merged); // Output: { a: 1, b: 3, c: 4 }
 | **Methods**   | `Object.keys()`, `Object.values()` | `map()`, `filter()`, `reduce()` |
 
 [🔝 Back to Top](#table-of-contents)
+
+## 17. for...in Loop / for...of Loop / Array.from() in js
+
+**1.for...in**
+
+The for...in loop is used to iterate over the properties (keys) of an object.
+
+```
+let person = {
+   name: "Rishabh",
+   age: 23,
+   city: "Delhi"
+};
+
+for (let key in person) {
+   console.log(key, ":", person[key]);
+}
+/*
+Output:
+name : Rishabh
+age : 23
+city : Delhi
+*/
+
+```
+
+**Example with an Array:**
+
+```
+let numbers = [10, 20, 30];
+
+for (let index in numbers) {
+    console.log(index, ":", numbers[index]);
+}
+/*
+Output:
+0 : 10
+1 : 20
+2 : 30
+*/
+
+```
+
+**Note: for...in should not be used for arrays, because it iterates over indexes as strings, which can lead to unexpected results.**
+
+**2. for...of**
+
+The for...of loop is used to iterate over values of iterable objects like arrays, strings, sets, and maps.
+
+```
+let numbers = [10, 20, 30];
+
+for (let num of numbers) {
+   console.log(num);
+}
+/*
+Output:
+10
+20
+30
+*/
+
+```
+
+**Example with a String:**
+
+```
+let name = "Rishabh";
+
+for (let char of name) {
+    console.log(char);
+}
+/*
+Output:
+R
+i
+s
+h
+a
+b
+h
+*/
+```
+
+**3. Array.from()**
+
+Array.from() is used to convert an iterable or array-like object into an array.
+
+**Example 1: Convert a String to an Array**
+
+```
+let name = "Rishabh";
+let charArray = Array.from(name);
+
+console.log(charArray);
+// Output: ['R', 'i', 's', 'h', 'a', 'b', 'h']
+
+```
+
+**Example 2: Convert arguments Object to an Array**
+
+```
+function sumAll() {
+    let argsArray = Array.from(arguments);
+    console.log(argsArray);
+}
+
+sumAll(5, 10, 15, 20);
+// Output: [5, 10, 15, 20]
+```
+
+**Difference Between for...in and for...of**
+
+## Difference Between `for...in` and `for...of`
+
+| Feature                     | `for...in`                  | `for...of`                 |
+| --------------------------- | --------------------------- | -------------------------- |
+| **Iterates over**           | Object properties (keys)    | Values of iterable objects |
+| **Works with Objects?**     | ✅ Yes                      | ❌ No                      |
+| **Works with Arrays?**      | ✅ Yes, but not recommended | ✅ Yes                     |
+| **Output for `{a:1, b:2}`** | `"a", "b"`                  | ❌ Error                   |
+| **Output for `[1,2,3]`**    | `"0", "1", "2"`             | `1, 2, 3`                  |
+
+```
+
+let arr = [10, 20, 30];
+
+for (let i in arr) {
+    console.log(i); // Outputs: "0", "1", "2" (Indexes as Strings)
+}
+
+for (let value of arr) {
+    console.log(value); // Outputs: 10, 20, 30
+}
+
+
+```
 
 <!-- ### Learn-javascript-with-me
 Learn-javascript-with-me
