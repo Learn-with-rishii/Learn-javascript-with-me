@@ -21,6 +21,7 @@
 | 13  | [ Difference between filter , map , foreach](#13-difference-between-filter--map--foreach)                |
 | 14  | [ What is the reduce Function](#14-what-is-the-reduce-function)                                          |
 | 15  | [Difference Between `reduce()` vs `map()` vs `filter()`](#15-difference-between-reduce-vs-map-vs-filter) |
+| 16  | [What is an Object in JavaScript](#16-what-is-an-object-in-javascript)                                   |
 
 <!-- TOC_END -->
 
@@ -1012,6 +1013,238 @@ console.log(reduceItems);
 | **Purpose**              | Reduces array to a single value | Transforms elements | Filters elements based on a condition |
 | **Returns a new array?** | ❌ No (returns a single value)  | ✅ Yes              | ✅ Yes                                |
 | **Common Use**           | Summing, counting, merging      | Modifying values    | Removing unwanted elements            |
+
+[🔝 Back to Top](#table-of-contents)
+
+## 16. What is an Object in JavaScript
+
+An object in JavaScript is a collection of key-value pairs. It allows you to store multiple values in a single variable.
+
+- Keys are also called properties.
+- Values can be any data type (string, number, array, function, etc.).
+- Objects are used to group related data and behavior together.
+
+  **Example:**
+
+```
+let person = {
+    name: "Rishabh",
+    age: 20,
+    isStudent: true
+};
+
+console.log(person.name); // Output: Rishabh
+
+```
+
+**1. Creating Objects in JavaScript**
+
+- Object Literal (Most Common)
+- Using new Object()
+- Using a Constructor Function
+- Using Object.create()
+
+```
+<!-- Object Literal (Most Common)  -->
+
+let car = {
+    brand: "Toyota",
+    model: "Camry",
+    year: 2022
+};
+
+<!-- Using new Object() -->
+
+let car = new Object();
+car.brand = "Toyota";
+car.model = "Camry";
+car.year = 2022;
+
+```
+
+**2. Accessing Object Properties**
+
+- Dot Notation (.)
+- Bracket Notation ([])
+
+```
+<!-- Using Dot Notation (.)  -->
+
+let person = {
+    name: "Rishabh",
+    age: 20,
+    isStudent: true
+};
+console.log(person.name); // Output: Rishabh
+```
+
+```
+<!-- using  Bracket Notation ([]) -->
+
+let person = {
+    "Full name": "Rishabh",
+    age: 20,
+    isStudent: true
+};
+console.log(person["Full name"]); // Output: Rishabh
+
+```
+
+**Note:** ✅ Use bracket notation when:
+
+- The property name has spaces or special characters.
+- The property name is stored in a variable.
+
+**3. Adding, Updating, and Deleting Properties**
+
+- Adding a New Property
+
+  - Example:
+
+         ```
+         let person = {
+         name: "Rishabh",
+         age: 20,
+         isStudent: true
+         };
+         person.city = "Delhi";
+         console.log(person);
+         // Output: { name: "Rishabh", age: 20, isStudent: true, city: "Delhi" }
+
+          ```
+
+- Updating a Property
+
+  - Example:
+
+    ```
+    let person = {
+    name: "Rishabh",
+    age: 20,
+    isStudent: true
+    };
+    person.age = 24;
+    console.log(person.age); // Output: 24
+    ```
+
+- Deleting a Property
+
+  - Example:
+
+    ```
+    let person = {
+    name: "Rishabh",
+    age: 20,
+    isStudent: true
+    };
+    delete person.isStudent;
+    console.log(person);
+    // Output: { name: "Rishabh", age: 24
+    }
+    ```
+
+**4. Looping Through an Object**
+
+- Using for...in Loop
+- Using Object.keys(), Object.values(), and Object.entries()
+
+```
+
+<!-- Using for...in Loop -->
+ let person = {
+    name: "Rishabh",
+    age: 20,
+    isStudent: true
+    };
+
+for (let key in person) {
+    console.log(key, ":", person[key]);
+}
+/*
+Output:
+name : Rishabh
+age : 20
+   isStudent: true
+*/
+```
+
+```
+<!-- Using Object.keys(), Object.values(), and Object.entries() -->
+ let person = {
+    name: "Rishabh",
+    age: 24,
+    city: "Delhi"
+
+    };
+
+console.log(Object.keys(person));   // Output: ["name", "age", "city"]
+console.log(Object.values(person)); // Output: ["Rishabh", 24, "Delhi"]
+console.log(Object.entries(person)); // Output: [["name", "Rishabh"], ["age", 24], ["city", "Delhi"]]
+```
+
+**5. Object Methods (Functions Inside Objects)**
+
+```
+let person = {
+    name: "Rishabh",
+    age: 23,
+    greet: function() {
+        return `Hello, my name is ${this.name}`;
+    }
+};
+
+console.log(person.greet()); // Output: Hello, my name is Rishabh
+```
+
+**Note: 📝 this refers to the current object.**
+
+**6. Checking if a Property Exists**
+
+```
+let person = {
+    name: "Rishabh",
+    age: 24,
+    city: "Delhi"
+
+    };
+console.log("age" in person); // Output: true
+console.log(person.hasOwnProperty("city")); // Output: true
+```
+
+**7. Merging Objects**
+
+- Using Object.assign()
+- Using Spread Operator (...)
+
+```
+<!--Using Object.assign()  -->
+
+let obj1 = { a: 1, b: 2 };
+let obj2 = { b: 3, c: 4 };
+
+let merged = Object.assign({}, obj1, obj2);
+console.log(merged); // Output: { a: 1, b: 3, c: 4 }
+
+```
+
+```
+<!-- Using Spread Operator (...) -->
+
+let obj1 = { a: 1, b: 2 };
+let obj2 = { b: 3, c: 4 };
+
+let merged = { ...obj1, ...obj2 };
+console.log(merged); // Output: { a: 1, b: 3, c: 4 }
+```
+
+**8. Objects vs Arrays**
+
+| Feature       | Objects                            | Arrays                          |
+| ------------- | ---------------------------------- | ------------------------------- |
+| **Data Type** | Unordered key-value pairs          | Ordered list of elements        |
+| **Access**    | By property name                   | By index number                 |
+| **Best for**  | Storing structured data            | Storing lists of items          |
+| **Methods**   | `Object.keys()`, `Object.values()` | `map()`, `filter()`, `reduce()` |
 
 [🔝 Back to Top](#table-of-contents)
 
