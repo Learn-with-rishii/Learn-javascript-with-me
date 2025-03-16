@@ -23,6 +23,8 @@
 | 15  | [Difference Between `reduce()` vs `map()` vs `filter()`](#15-difference-between-reduce-vs-map-vs-filter) |
 | 16  | [What is an Object in JavaScript](#16-what-is-an-object-in-javascript)                                   |
 | 17  | [for...in Loop / for...of Loop / Array.from() in js](#17-forin-loop--forof-loop--arrayfrom-in-js)        |
+| 18  | [ Type Conversion vs Type Coercion](#18-type-conversion-vs-type-coercion)                                |
+| 19  | [What are Loops in JavaScript](#19-what-are-loops-in-javascript)                                         |
 
 <!-- TOC_END -->
 
@@ -1386,27 +1388,259 @@ for (let value of arr) {
 
 ```
 
-<!-- ### Learn-javascript-with-me
-Learn-javascript-with-me
-- **Learn-javascript-with-me**
-- Learn-javascript-with-me
-  - Learn-javascript-with-me
-    - Learn-javascript-with-me
-1. Learn-javascript-with-me
-2. Learn-javascript-with-me
-```
+[🔝 Back to Top](#table-of-contents)
 
-console.log("Hello")
+## 18. Type Conversion vs Type Coercion
 
-```
----
-## 2. What is a prototype chain
-## 3. my name is rishabh -->
+| Feature        | Type Conversion                                                                                                           | Type Coercion                                                                            |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| **Definition** | When we **explicitly** convert a data type into another type using methods like `Number()`, `String()`, `Boolean()`, etc. | When JavaScript **automatically** converts one data type into another during operations. |
+| **Control**    | Done manually by the developer.                                                                                           | Done automatically by JavaScript.                                                        |
+| **Example**    | `Number("10") → 10`                                                                                                       | `"5" * 2 → 10`                                                                           |
 
-```
+** 1. Type Conversion (Explicit)**
+
+`✅ Converting to Number`
+
+Use the Number() function to convert values to a number.
 
 ```
+console.log(Number("10"));   // 10
+console.log(Number("10.5")); // 10.5
+console.log(Number("ABC"));  // NaN (Not a Number)
+console.log(Number(true));   // 1
+console.log(Number(false));  // 0
+```
+
+**Note:📌 Shortcut: parseInt() and parseFloat()**
+
+```
+console.log(parseInt("10.99"));  // 10
+console.log(parseFloat("10.99")); // 10.99
+```
+
+`✅ Converting to String`
+
+Use the String() function or .toString()
+
+```
+console.log(String(100));    // "100"
+console.log(String(true));   // "true"
+console.log((123).toString()); // "123"
 
 ```
 
+`✅ Converting to Boolean`
+
+Use Boolean() to convert values to true or false.
+
 ```
+console.log(Boolean(1));    // true
+console.log(Boolean(0));    // false
+console.log(Boolean("Hello")); // true
+console.log(Boolean(""));   // false
+console.log(Boolean(null)); // false
+console.log(Boolean(undefined)); // false
+
+```
+
+\*\*Note:`📝 Truthy Values: Any non-empty string, non-zero number, true.`
+
+`📝 Falsy Values: 0, "", null, undefined, NaN, false.`\*\*
+
+**2. Type Coercion (Implicit Conversion)**
+
+JavaScript automatically converts data types in certain operations.
+
+`✅ String Coercion (Number → String)`
+
+```console.log("5" + 2);    // "52" (Number converted to String)
+console.log("5" + true); // "5true" (Boolean converted to String)
+console.log("5" + null); // "5null"
+```
+
+**Note:Addition (+) converts everything to a string!**
+
+`✅ Number Coercion (String → Number)`
+
+```
+console.log("5" - 2);  // 3
+console.log("5" * 2);  // 10
+console.log("10" / "2"); // 5
+console.log("10" - "5" + 2); // 7
+console.log("10" - "5" + "2"); // "52" (String Concatenation)
+```
+
+**Note:📌 Subtraction (-), Multiplication (\*), and Division (/) convert strings to numbers automatically.**
+
+`✅ Boolean Coercion (Convert to true or false)`
+
+```
+console.log(5 == "5");  // true (String converted to Number)
+console.log(0 == false); // true (Boolean converted to Number)
+console.log("" == false); // true
+console.log(null == undefined); // true
+```
+
+**Note:📌 Loose equality (==) allows coercion, while strict equality (===) does not.**
+
+`Equality Comparison (== vs ===)`
+
+Loose Equality (`==`) vs Strict Equality (`===`)
+
+| Operator | Meaning                          | Example             |
+| -------- | -------------------------------- | ------------------- |
+| `==`     | Loose equality (allows coercion) | `"5" == 5 → true`   |
+| `===`    | Strict equality (no coercion)    | `"5" === 5 → false` |
+
+✅ **Always prefer `===` to avoid unintended type conversions.**
+
+```
+console.log(5 == "5");  // true (Type coercion happens)
+console.log(5 === "5"); // false (No coercion, types must match)
+
+```
+
+[🔝 Back to Top](#table-of-contents)
+
+## 19. What are Loops in JavaScript
+
+Loops are used to execute a block of code multiple times until a certain condition is met.
+
+- `Types of Loops in JavaScript:`
+
+1. for loop
+2. while loop
+3. do...while loop
+4. for...in loop (for objects)
+5. for...of loop (for iterables)
+
+`1. for Loop (Entry-Controlled Loop)`
+
+Used when we know how many times to run the loop.
+
+- **Syntax**
+
+```
+for (initialization; condition; increment/decrement) {
+   // Code to be executed
+}
+
+```
+
+- **Example:**
+
+```
+for (let i = 1; i <= 5; i++) {
+    console.log(i);
+}
+/*
+Output:
+1
+2
+3
+4
+5
+*/
+
+```
+
+- **Example: Loop through an array**
+
+```
+
+let arr = [10, 20, 30, 40];
+
+for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+}
+/*
+Output:
+10
+20
+30
+40
+*/
+
+```
+
+`2. while Loop (Entry-Controlled Loop)`
+
+Used when we don’t know the exact number of iterations in advance.
+
+- **Syntax**
+
+```
+while (condition) {
+   // Code to be executed
+}
+```
+
+- **Example:**
+
+```
+
+let i = 1;
+while (i <= 5) {
+console.log(i);
+i++;
+}
+/_
+Output:
+1
+2
+3
+4
+5
+_/
+
+```
+
+`3. do...while Loop (Exit-Controlled Loop)`
+
+Executes at least once, even if the condition is false.
+
+- **Syntax**
+
+```
+do {
+   // Code to be executed
+} while (condition);
+
+
+```
+
+- **Example:**
+
+```
+let i = 1;
+do {
+    console.log(i);
+    i++;
+} while (i <= 5);
+/*
+Output:
+1
+2
+3
+4
+5
+*/
+
+```
+
+- **Example: When Condition is Initially False**
+
+```
+let x = 10;
+do {
+    console.log("This will run once even if condition is false");
+} while (x < 5);
+/*
+Output:
+This will run once even if condition is false
+*/
+
+```
+
+[🔝 Back to Top](#table-of-contents)
