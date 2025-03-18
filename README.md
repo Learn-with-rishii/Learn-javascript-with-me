@@ -25,6 +25,7 @@
 | 17  | [for...in Loop / for...of Loop / Array.from() in js](#17-forin-loop--forof-loop--arrayfrom-in-js)        |
 | 18  | [ Type Conversion vs Type Coercion](#18-type-conversion-vs-type-coercion)                                |
 | 19  | [What are Loops in JavaScript](#19-what-are-loops-in-javascript)                                         |
+| 20  | [What is a Function in JavaScript](#20-what-is-a-function-in-javascript)                                 |
 
 <!-- TOC_END -->
 
@@ -1641,6 +1642,203 @@ Output:
 This will run once even if condition is false
 */
 
+```
+
+` 4. break and continue in Loops`
+
+**✅ break Statement → Exits the loop immediately.**
+
+```
+for (let i = 1; i <= 5; i++) {
+    if (i === 3) {
+        break;
+    }
+    console.log(i);
+}
+/*
+Output:
+1
+2
+*/
+
+```
+
+**✅ continue Statement → Skips the current iteration and moves to the next.**
+
+```
+for (let i = 1; i <= 5; i++) {
+    if (i === 3) {
+        continue;
+    }
+    console.log(i);
+}
+/*
+Output:
+1
+2
+4
+5
+*/
+
+```
+
+`5. Nested Loops`
+
+**✅ A loop inside another loop.**
+
+```
+for (let i = 1; i <= 3; i++) {
+    for (let j = 1; j <= 3; j++) {
+        console.log(`i = ${i}, j = ${j}`);
+    }
+}
+
+<!-- output -->
+<!--
+i = 1, j = 1
+i = 1, j = 2
+i = 1, j = 3
+i = 2, j = 1 -->
+
+
+```
+
+[🔝 Back to Top](#table-of-contents)
+
+## 20. What is a Function in JavaScript
+
+- A function is a block of reusable code that performs a specific task.
+- It helps in code reusability, modularity, and better readability.
+
+`Why Use Functions ?`
+
+- ✅ Avoids code repetition
+- ✅ Makes code modular and readable
+- ✅ Helps in debugging and maintaining code
+
+**1. Function Declaration (Named Function)**
+
+- ✅ A function is defined using the function keyword.
+
+- Syntax :
+
+```
+function functionName(parameters) {
+    // Function body
+    return value; // (Optional)
+}
+```
+
+- **Example: Function to Add Two Numbers**
+
+```
+function add(a, b) {
+    return a + b;
+}
+
+console.log(add(5, 3)); // Output: 8
+
+```
+
+` 📌 return keyword is used to send back the result. If no return, the function returns undefined.`
+
+**2. Function Expression (Anonymous Function)**
+
+- ✅ A function can be assigned to a variable.
+- ✅ It does not have a name.
+
+```
+const subtract = function(a, b) {
+    return a - b;
+};
+
+console.log(subtract(10, 5)); // Output: 5
+```
+
+`📌 Function expressions are not hoisted, so they cannot be called before declaration.`
+
+**3. Arrow Functions (ES6)**
+
+- ✅ A shorter way to write functions.
+- ✅ Does not have its own `this`.
+
+- `Syntax :`
+
+```
+const functionName = (parameters) => expression;
+
+```
+
+- `Example : Arrow Function`
+
+```
+const multiply = (a, b) => a * b;
+console.log(multiply(4, 5)); // Output: 20
+```
+
+- `📌 If only one parameter, parentheses can be omitted :`
+
+```
+const square = x => x * x;
+console.log(square(4)); // Output: 16
+```
+
+- `📌 If function has multiple lines, use {} and return:`
+
+```
+const greet = (name) => {
+    return `Hello, ${name}`;
+};
+console.log(greet("Rishabh")); // Output: Hello, Rishabh
+```
+
+**4. Function Parameters & Default Parameters**
+
+- ✅ Default parameters allow functions to have default values if no argument is passed.
+
+```
+function greet(name = "Guest") {
+    return `Hello, ${name}`;
+}
+
+console.log(greet("Rishabh")); // Output: Hello, Rishabh
+console.log(greet()); // Output: Hello, Guest
+```
+
+**5. Rest Parameters (...args)**
+
+- ✅ Allows functions to accept multiple arguments as an array.
+
+```
+function sum(...numbers) {
+    return numbers.reduce((acc, num) => acc + num, 0);
+}
+
+console.log(sum(1, 2, 3, 4, 5)); // Output: 15
+```
+
+`📌 Rest parameters must be the last parameter in the function.`
+
+**6.  Callback Functions**
+
+- ✅ A function that is passed as an argument to another function.
+
+```
+function greet(name, callback) {
+    console.log(`Hello, ${name}`);
+    callback();
+}
+
+function sayBye() {
+    console.log("Goodbye!");
+}
+
+greet("Rishabh", sayBye);
+/*
+Output:
+Hello, Rishabh
+Goodbye!
+*/
 ```
 
 [🔝 Back to Top](#table-of-contents)
