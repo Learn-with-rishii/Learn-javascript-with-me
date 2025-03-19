@@ -26,6 +26,7 @@
 | 18  | [ Type Conversion vs Type Coercion](#18-type-conversion-vs-type-coercion)                                |
 | 19  | [What are Loops in JavaScript](#19-what-are-loops-in-javascript)                                         |
 | 20  | [What is a Function in JavaScript](#20-what-is-a-function-in-javascript)                                 |
+| 21  | [Scope in JavaScript](#21-scope-in-javascript)                                                           |
 
 <!-- TOC_END -->
 
@@ -1819,7 +1820,7 @@ console.log(sum(1, 2, 3, 4, 5)); // Output: 15
 
 `📌 Rest parameters must be the last parameter in the function.`
 
-**6.  Callback Functions**
+**6. Callback Functions**
 
 - ✅ A function that is passed as an argument to another function.
 
@@ -1840,5 +1841,155 @@ Hello, Rishabh
 Goodbye!
 */
 ```
+
+**7. Immediately Invoked Function Expression (IIFE)**
+
+- ✅ A function that runs immediately after it is defined.
+- ✅ Used to avoid polluting the global scope.
+
+```
+(function() {
+    console.log("IIFE is executed!");
+})();
+
+```
+
+- `📌 With Arrow Function:`
+
+```
+(() => console.log("IIFE with Arrow Function!"))();
+
+```
+
+**8. Higher-Order Functions**
+
+- Takes another function as an argument.
+- Returns another function as its result.
+
+```
+function fun() {
+    console.log("Hello, World!");
+}
+function fun2(action) {
+    action();
+    action();
+}
+
+fun2(fun);
+```
+
+[🔝 Back to Top](#table-of-contents)
+
+## 21. Scope in JavaScript
+
+- Scope in JavaScript refers to the accessibility and visibility of variables in different parts of the code.
+
+**Types of Scope in JavaScript**
+
+`1. Global Scope`
+
+- A variable declared outside any function is in the global scope and can be accessed anywhere in the program.
+
+```
+
+let globalVar = "I am global";
+
+function showGlobal() {
+    console.log(globalVar); // Accessible
+}
+
+showGlobal();
+console.log(globalVar); // Accessible
+```
+
+- 🔹 Global variables can be accessed inside functions.
+- 🔹 They remain in memory throughout the program execution.
+
+`2. Local Scope (Function Scope)`
+
+- A variable declared inside a function is in the local scope and cannot be accessed outside the function.
+
+```
+
+function showLocal() {
+    let localVar = "I am local";
+    console.log(localVar); // Accessible inside function
+}
+
+showLocal();
+console.log(localVar); // ❌ Error: localVar is not defined
+
+```
+
+- 🔹 Local variables are created when the function is called and destroyed when it ends.
+- 🔹 They cannot be accessed outside the function.
+
+`3. Block Scope (with let & const)`
+
+- A block {} in JavaScript defines a block scope. Variables declared inside it using let or const cannot be accessed outside.
+
+```
+
+{
+    let blockVar = "I am block-scoped";
+    console.log(blockVar); // Accessible inside block
+}
+
+console.log(blockVar); // ❌ Error: blockVar is not defined
+
+```
+
+- let and const are block-scoped, but var is not!
+
+`Example: var is NOT block-scoped`
+
+```
+
+{
+    var test = "I am NOT block-scoped";
+}
+console.log(test); // ✅ Accessible
+
+```
+
+`4.  Lexical Scope (Nested Scope)`
+
+- In JavaScript, inner functions can access variables from their parent functions. This is called lexical scope.
+
+```javascript
+function outer() {
+    let outerVar = "I am from outer function";
+
+    function inner() {
+        console.log(outerVar); // ✅ Accessible
+    }
+
+    inner();
+}
+
+outer();
+
+```
+
+- 🔹 Inner functions inherit variables from their parent functions, but the reverse is not true.
+
+`5. Closures (Advanced Concept)`
+
+- A closure is a function that remembers the variables from its lexical scope even after the outer function has finished executing.
+
+```javascript
+
+function init() {
+  var name = "Mozilla"; // name is a local variable created by init
+  function displayName() {
+    // displayName() is the inner function, that forms a closure
+    console.log(name); // use variable declared in the parent function
+  }
+  displayName();
+}
+init();
+```
+
+
 
 [🔝 Back to Top](#table-of-contents)
