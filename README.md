@@ -27,6 +27,7 @@
 | 19  | [What are Loops in JavaScript](#19-what-are-loops-in-javascript)                                         |
 | 20  | [What is a Function in JavaScript](#20-what-is-a-function-in-javascript)                                 |
 | 21  | [Scope in JavaScript](#21-scope-in-javascript)                                                           |
+| 22  | [ Hoisting in JavaScript](#22-hoisting-in-javascript)                                                    |
 
 <!-- TOC_END -->
 
@@ -1958,17 +1959,16 @@ console.log(test); // ✅ Accessible
 
 ```javascript
 function outer() {
-    let outerVar = "I am from outer function";
+  let outerVar = "I am from outer function";
 
-    function inner() {
-        console.log(outerVar); // ✅ Accessible
-    }
+  function inner() {
+    console.log(outerVar); // ✅ Accessible
+  }
 
-    inner();
+  inner();
 }
 
 outer();
-
 ```
 
 - 🔹 Inner functions inherit variables from their parent functions, but the reverse is not true.
@@ -1978,7 +1978,6 @@ outer();
 - A closure is a function that remembers the variables from its lexical scope even after the outer function has finished executing.
 
 ```javascript
-
 function init() {
   var name = "Mozilla"; // name is a local variable created by init
   function displayName() {
@@ -1990,6 +1989,100 @@ function init() {
 init();
 ```
 
+[🔝 Back to Top](#table-of-contents)
 
+## 22. Hoisting in JavaScript
+
+- Hoisting is JavaScript’s default behavior of moving declarations to the top of their scope before execution. This means you can use variables and functions before declaring them.
+
+**1. How Hoisting Works**
+
+```
+console.log(a); // ❌ Undefined (Not an error, but variable is not assigned yet)
+var a = 10;
+console.log(a); // ✅ 10
+```
+
+- 🔹 JavaScript moves the declaration (var a;) to the top but not the initialization (a = 10;).
+- 🔹 This is why the first console.log(a) prints undefined instead of an error.
+
+**2. Hoisting with var, let, and const**
+
+`
+`var`vs`let`vs`const` (Hoisting & Initialization)
+
+| Keyword | Hoisted? | Initialized with Default Value? | Can be Accessed Before Declaration? |
+| ------- | -------- | ------------------------------- | ----------------------------------- |
+| `var`   | ✅ Yes   | `undefined`                     | ✅ Yes (but returns `undefined`)    |
+| `let`   | ✅ Yes   | ❌ No (Temporal Dead Zone)      | ❌ No (Reference Error)             |
+| `const` | ✅ Yes   | ❌ No (Temporal Dead Zone)      | ❌ No (Reference Error)             |
+
+`✅ Example with var`
+
+```
+console.log(x); // ❌ Undefined (Variable exists but is not assigned)
+var x = 5;
+console.log(x); // ✅ 5
+```
+
+`✅ Example with let`
+
+```
+console.log(y); // ❌ ReferenceError (Cannot access 'y' before initialization)
+let y = 5;
+console.log(y); // ✅ 5
+```
+
+- 🔹 let is hoisted but stays in the "Temporal Dead Zone" (TDZ) until it is initialized.
+
+`✅ Example with const`
+
+```
+console.log(z); // ❌ ReferenceError (Cannot access 'z' before initialization)
+const z = 5;
+console.log(z); // ✅ 5
+```
+
+- 🔹 Like let, const is also in the "Temporal Dead Zone" and must be initialized at the time of declaration.
+
+**3. Function Hoisting**
+
+- Function declarations are completely hoisted, meaning you can call them before declaring.
+
+```
+greet(); // ✅ Works fine
+
+function greet() {
+    console.log("Hello, Rishabh!");
+}
+```
+
+- 🔹 The entire function is hoisted, so it works before declaration.
+
+`❌ Function Expression Hoisting (Using var)`
+
+```
+sayHello(); // ❌ TypeError: sayHello is not a function
+
+var sayHello = function() {
+    console.log("Hello!");
+};
+
+```
+
+🔹 Only var sayHello is hoisted, but not the function assignment.
+🔹 At the time of execution, sayHello is still undefined, causing an error.
+
+`✅ Function Expression Hoisting (Using let or const)`
+
+```
+greet(); // ❌ ReferenceError: Cannot access 'greet' before initialization
+
+let greet = function() {
+    console.log("Hello!");
+};
+```
+
+🔹 let and const are hoisted but stay in the Temporal Dead Zone, so calling greet() before declaration causes an error.
 
 [🔝 Back to Top](#table-of-contents)
