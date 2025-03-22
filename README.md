@@ -28,6 +28,8 @@
 | 20  | [What is a Function in JavaScript](#20-what-is-a-function-in-javascript)                                 |
 | 21  | [Scope in JavaScript](#21-scope-in-javascript)                                                           |
 | 22  | [ Hoisting in JavaScript](#22-hoisting-in-javascript)                                                    |
+| 23  | [Closures in JavaScript](#23closures-in-javascript)                                                      |
+| 24  | [Callback Functions in JavaScript ](#24-callback-functions-in-javascript)                                |
 
 <!-- TOC_END -->
 
@@ -1766,28 +1768,28 @@ console.log(subtract(10, 5)); // Output: 5
 
 - `Syntax :`
 
-```
+```javascript
 const functionName = (parameters) => expression;
 
 ```
 
 - `Example : Arrow Function`
 
-```
+```javascript
 const multiply = (a, b) => a * b;
 console.log(multiply(4, 5)); // Output: 20
 ```
 
 - `📌 If only one parameter, parentheses can be omitted :`
 
-```
+```javascript
 const square = x => x * x;
 console.log(square(4)); // Output: 16
 ```
 
 - `📌 If function has multiple lines, use {} and return:`
 
-```
+```javascript
 const greet = (name) => {
     return `Hello, ${name}`;
 };
@@ -1798,7 +1800,7 @@ console.log(greet("Rishabh")); // Output: Hello, Rishabh
 
 - ✅ Default parameters allow functions to have default values if no argument is passed.
 
-```
+```javascript
 function greet(name = "Guest") {
     return `Hello, ${name}`;
 }
@@ -1811,7 +1813,7 @@ console.log(greet()); // Output: Hello, Guest
 
 - ✅ Allows functions to accept multiple arguments as an array.
 
-```
+```javascript
 function sum(...numbers) {
     return numbers.reduce((acc, num) => acc + num, 0);
 }
@@ -1825,7 +1827,7 @@ console.log(sum(1, 2, 3, 4, 5)); // Output: 15
 
 - ✅ A function that is passed as an argument to another function.
 
-```
+```javascript
 function greet(name, callback) {
     console.log(`Hello, ${name}`);
     callback();
@@ -1848,7 +1850,7 @@ Goodbye!
 - ✅ A function that runs immediately after it is defined.
 - ✅ Used to avoid polluting the global scope.
 
-```
+```javascript
 (function() {
     console.log("IIFE is executed!");
 })();
@@ -1857,7 +1859,7 @@ Goodbye!
 
 - `📌 With Arrow Function:`
 
-```
+```javascript
 (() => console.log("IIFE with Arrow Function!"))();
 
 ```
@@ -1867,7 +1869,7 @@ Goodbye!
 - Takes another function as an argument.
 - Returns another function as its result.
 
-```
+```javascript
 function fun() {
     console.log("Hello, World!");
 }
@@ -1891,7 +1893,7 @@ fun2(fun);
 
 - A variable declared outside any function is in the global scope and can be accessed anywhere in the program.
 
-```
+```javascript
 
 let globalVar = "I am global";
 
@@ -1910,7 +1912,7 @@ console.log(globalVar); // Accessible
 
 - A variable declared inside a function is in the local scope and cannot be accessed outside the function.
 
-```
+```javascript
 
 function showLocal() {
     let localVar = "I am local";
@@ -1929,7 +1931,7 @@ console.log(localVar); // ❌ Error: localVar is not defined
 
 - A block {} in JavaScript defines a block scope. Variables declared inside it using let or const cannot be accessed outside.
 
-```
+```javascript
 
 {
     let blockVar = "I am block-scoped";
@@ -1944,7 +1946,7 @@ console.log(blockVar); // ❌ Error: blockVar is not defined
 
 `Example: var is NOT block-scoped`
 
-```
+```javascript
 
 {
     var test = "I am NOT block-scoped";
@@ -1997,7 +1999,7 @@ init();
 
 **1. How Hoisting Works**
 
-```
+```javascript
 console.log(a); // ❌ Undefined (Not an error, but variable is not assigned yet)
 var a = 10;
 console.log(a); // ✅ 10
@@ -2019,7 +2021,7 @@ console.log(a); // ✅ 10
 
 `✅ Example with var`
 
-```
+```javascript
 console.log(x); // ❌ Undefined (Variable exists but is not assigned)
 var x = 5;
 console.log(x); // ✅ 5
@@ -2027,7 +2029,7 @@ console.log(x); // ✅ 5
 
 `✅ Example with let`
 
-```
+```javascript
 console.log(y); // ❌ ReferenceError (Cannot access 'y' before initialization)
 let y = 5;
 console.log(y); // ✅ 5
@@ -2037,7 +2039,7 @@ console.log(y); // ✅ 5
 
 `✅ Example with const`
 
-```
+```javascript
 console.log(z); // ❌ ReferenceError (Cannot access 'z' before initialization)
 const z = 5;
 console.log(z); // ✅ 5
@@ -2049,7 +2051,7 @@ console.log(z); // ✅ 5
 
 - Function declarations are completely hoisted, meaning you can call them before declaring.
 
-```
+```javascript
 greet(); // ✅ Works fine
 
 function greet() {
@@ -2061,7 +2063,7 @@ function greet() {
 
 `❌ Function Expression Hoisting (Using var)`
 
-```
+```javascript
 sayHello(); // ❌ TypeError: sayHello is not a function
 
 var sayHello = function() {
@@ -2075,7 +2077,7 @@ var sayHello = function() {
 
 `✅ Function Expression Hoisting (Using let or const)`
 
-```
+```javascript
 greet(); // ❌ ReferenceError: Cannot access 'greet' before initialization
 
 let greet = function() {
@@ -2084,5 +2086,233 @@ let greet = function() {
 ```
 
 🔹 let and const are hoisted but stay in the Temporal Dead Zone, so calling greet() before declaration causes an error.
+
+[🔝 Back to Top](#table-of-contents)
+
+## 23.Closures in JavaScript
+
+A closure in JavaScript is a function that remembers the variables from its outer scope, even after the outer function has finished executing.
+
+**1. Basic Example**
+
+```javascript
+function outer() {
+    let count = 0; // Local variable in outer function
+
+    function inner() {
+        count++; // Inner function accesses outer function's variable
+        console.log(count);
+    }
+
+    return inner; // Returning inner function
+}
+
+const counter = outer(); // outer() executes and returns inner()
+counter(); // Output: 1
+counter(); // Output: 2
+counter(); // Output: 3
+```
+
+**2. Closures in Real-World Scenarios**
+
+`✅ Use Case 1: Data Hiding (Encapsulation)`
+
+- Closures allow us to create private variables in JavaScript.
+
+```javascript
+
+function createCounter() {
+    let count = 0; // Private variable
+
+    return {
+        increment: function() {
+            count++;
+            console.log(count);
+        },
+        decrement: function() {
+            count--;
+            console.log(count);
+        },
+        getCount: function() {
+            return count;
+        }
+    };
+}
+
+const counter = createCounter();
+counter.increment(); // 1
+counter.increment(); // 2
+counter.decrement(); // 1
+console.log(counter.getCount()); // 1
+```
+
+`✅ Use Case 2: Function Factory`
+
+```javascript
+function multiplier(factor) {
+    return function(num) {
+        return num * factor;
+    };
+}
+
+const double = multiplier(2);
+const triple = multiplier(3);
+
+console.log(double(5)); // Output: 10
+console.log(triple(5)); // Output: 15
+
+```
+
+- Each function (double and triple) keeps its own factor value due to closures.
+
+`✅ Use Case 3: Delayed Execution (setTimeout & Closures)`
+
+```javascript
+function delayedGreeting(name, delay) {
+    setTimeout(() => {
+        console.log(`Hello, ${name}!`);
+    }, delay);
+}
+
+delayedGreeting("Rishabh", 2000); // Output after 2 seconds: "Hello, Rishabh!"
+
+```
+
+`The callback inside setTimeout retains access to name, even after delayedGreeting has finished executing.`
+
+[🔝 Back to Top](#table-of-contents)
+
+## 24. Callback Functions in JavaScript
+
+A callback function is a function that is passed as an argument to another function and is executed later.
+
+1. `Basic Example of a Callback Function`
+
+```javascript
+function greet(name, callback) {
+    console.log("Hello, " + name);
+    callback(); // Executing the callback function
+}
+
+function sayGoodbye() {
+    console.log("Goodbye!");
+}
+
+greet("Rishabh", sayGoodbye);
+// Output:
+// Hello, Rishabh
+// Goodbye!
+
+```
+
+`✅ The sayGoodbye function is passed as a callback to greet() and gets executed inside greet()`
+
+2. `Why Use Callback Functions?`
+
+- To execute a function after another function completes.
+- To handle asynchronous operations (e.g., API calls, file reading, timers).
+- To allow flexibility and reusability of functions.
+
+3. `Callback with Anonymous Function`
+
+- Instead of defining a separate function, we can pass an anonymous function directly.
+
+```javascript
+function greet(name, callback) {
+    console.log("Hello, " + name);
+    callback();
+}
+
+greet("Rishabh", function() {
+    console.log("This is an anonymous callback function.");
+});
+```
+
+- ✅ Shorter syntax without needing an extra function name.
+
+4. `Callback in Asynchronous JavaScript (setTimeout)`
+
+```javascript
+console.log("Start");
+
+setTimeout(function() {
+    console.log("This message appears after 2 seconds");
+}, 2000);
+
+console.log("End");
+```
+
+- ✅ setTimeout() executes the callback after 2 seconds without blocking the code execution.
+
+5. `Callback in Array Methods (forEach, map, filter)`
+
+`✅ Using forEach()`
+
+```javascript
+let numbers = [1, 2, 3];
+
+numbers.forEach(function(num) {
+    console.log(num * 2);
+});
+// Output: 2, 4, 6
+```
+
+- ✅ The callback function modifies each element in the array.
+
+`✅ Using map()`
+
+```javascript
+let doubled = numbers.map(function(num) {
+    return num * 2;
+});
+console.log(doubled); // Output: [2, 4, 6]
+```
+
+6. `Callback Function in Event Handling`
+
+```javascript
+document.getElementById("btn").addEventListener("click", function() {
+    console.log("Button clicked!");
+});
+```
+
+- ✅ The callback function runs only when the button is clicked.
+
+7. `Nested Callbacks (Callback Hell)`
+
+- When using callbacks in asynchronous functions, nested callbacks can make the code hard to read and maintain.
+
+```javascript
+function step1(callback) {
+    setTimeout(() => {
+        console.log("Step 1 completed");
+        callback();
+    }, 1000);
+}
+
+function step2(callback) {
+    setTimeout(() => {
+        console.log("Step 2 completed");
+        callback();
+    }, 1000);
+}
+
+function step3() {
+    setTimeout(() => {
+        console.log("Step 3 completed");
+    }, 1000);
+}
+
+// Callback hell (nested callbacks)
+step1(() => {
+    step2(() => {
+        step3();
+    });
+});
+```
+
+- ❌ This is called "Callback Hell" because the code is deeply nested and hard to manage.
+
+- ✅ Solution: Use Promises or Async/Await (we will learn later).
 
 [🔝 Back to Top](#table-of-contents)
