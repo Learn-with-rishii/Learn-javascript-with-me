@@ -30,6 +30,7 @@
 | 22  | [ Hoisting in JavaScript](#22-hoisting-in-javascript)                                                    |
 | 23  | [Closures in JavaScript](#23closures-in-javascript)                                                      |
 | 24  | [Callback Functions in JavaScript ](#24-callback-functions-in-javascript)                                |
+| 25  | [Higher-Order Functions](#25-higher-order-functions)                                                     |
 
 <!-- TOC_END -->
 
@@ -1770,7 +1771,6 @@ console.log(subtract(10, 5)); // Output: 5
 
 ```javascript
 const functionName = (parameters) => expression;
-
 ```
 
 - `Example : Arrow Function`
@@ -1783,7 +1783,7 @@ console.log(multiply(4, 5)); // Output: 20
 - `📌 If only one parameter, parentheses can be omitted :`
 
 ```javascript
-const square = x => x * x;
+const square = (x) => x * x;
 console.log(square(4)); // Output: 16
 ```
 
@@ -1791,7 +1791,7 @@ console.log(square(4)); // Output: 16
 
 ```javascript
 const greet = (name) => {
-    return `Hello, ${name}`;
+  return `Hello, ${name}`;
 };
 console.log(greet("Rishabh")); // Output: Hello, Rishabh
 ```
@@ -1802,7 +1802,7 @@ console.log(greet("Rishabh")); // Output: Hello, Rishabh
 
 ```javascript
 function greet(name = "Guest") {
-    return `Hello, ${name}`;
+  return `Hello, ${name}`;
 }
 
 console.log(greet("Rishabh")); // Output: Hello, Rishabh
@@ -1815,7 +1815,7 @@ console.log(greet()); // Output: Hello, Guest
 
 ```javascript
 function sum(...numbers) {
-    return numbers.reduce((acc, num) => acc + num, 0);
+  return numbers.reduce((acc, num) => acc + num, 0);
 }
 
 console.log(sum(1, 2, 3, 4, 5)); // Output: 15
@@ -1829,12 +1829,12 @@ console.log(sum(1, 2, 3, 4, 5)); // Output: 15
 
 ```javascript
 function greet(name, callback) {
-    console.log(`Hello, ${name}`);
-    callback();
+  console.log(`Hello, ${name}`);
+  callback();
 }
 
 function sayBye() {
-    console.log("Goodbye!");
+  console.log("Goodbye!");
 }
 
 greet("Rishabh", sayBye);
@@ -1851,17 +1851,15 @@ Goodbye!
 - ✅ Used to avoid polluting the global scope.
 
 ```javascript
-(function() {
-    console.log("IIFE is executed!");
+(function () {
+  console.log("IIFE is executed!");
 })();
-
 ```
 
 - `📌 With Arrow Function:`
 
 ```javascript
 (() => console.log("IIFE with Arrow Function!"))();
-
 ```
 
 **8. Higher-Order Functions**
@@ -1871,11 +1869,11 @@ Goodbye!
 
 ```javascript
 function fun() {
-    console.log("Hello, World!");
+  console.log("Hello, World!");
 }
 function fun2(action) {
-    action();
-    action();
+  action();
+  action();
 }
 
 fun2(fun);
@@ -1894,11 +1892,10 @@ fun2(fun);
 - A variable declared outside any function is in the global scope and can be accessed anywhere in the program.
 
 ```javascript
-
 let globalVar = "I am global";
 
 function showGlobal() {
-    console.log(globalVar); // Accessible
+  console.log(globalVar); // Accessible
 }
 
 showGlobal();
@@ -1913,15 +1910,13 @@ console.log(globalVar); // Accessible
 - A variable declared inside a function is in the local scope and cannot be accessed outside the function.
 
 ```javascript
-
 function showLocal() {
-    let localVar = "I am local";
-    console.log(localVar); // Accessible inside function
+  let localVar = "I am local";
+  console.log(localVar); // Accessible inside function
 }
 
 showLocal();
 console.log(localVar); // ❌ Error: localVar is not defined
-
 ```
 
 - 🔹 Local variables are created when the function is called and destroyed when it ends.
@@ -1932,14 +1927,12 @@ console.log(localVar); // ❌ Error: localVar is not defined
 - A block {} in JavaScript defines a block scope. Variables declared inside it using let or const cannot be accessed outside.
 
 ```javascript
-
 {
-    let blockVar = "I am block-scoped";
-    console.log(blockVar); // Accessible inside block
+  let blockVar = "I am block-scoped";
+  console.log(blockVar); // Accessible inside block
 }
 
 console.log(blockVar); // ❌ Error: blockVar is not defined
-
 ```
 
 - let and const are block-scoped, but var is not!
@@ -1947,12 +1940,10 @@ console.log(blockVar); // ❌ Error: blockVar is not defined
 `Example: var is NOT block-scoped`
 
 ```javascript
-
 {
-    var test = "I am NOT block-scoped";
+  var test = "I am NOT block-scoped";
 }
 console.log(test); // ✅ Accessible
-
 ```
 
 `4.  Lexical Scope (Nested Scope)`
@@ -2055,7 +2046,7 @@ console.log(z); // ✅ 5
 greet(); // ✅ Works fine
 
 function greet() {
-    console.log("Hello, Rishabh!");
+  console.log("Hello, Rishabh!");
 }
 ```
 
@@ -2066,10 +2057,9 @@ function greet() {
 ```javascript
 sayHello(); // ❌ TypeError: sayHello is not a function
 
-var sayHello = function() {
-    console.log("Hello!");
+var sayHello = function () {
+  console.log("Hello!");
 };
-
 ```
 
 🔹 Only var sayHello is hoisted, but not the function assignment.
@@ -2080,8 +2070,8 @@ var sayHello = function() {
 ```javascript
 greet(); // ❌ ReferenceError: Cannot access 'greet' before initialization
 
-let greet = function() {
-    console.log("Hello!");
+let greet = function () {
+  console.log("Hello!");
 };
 ```
 
@@ -2097,14 +2087,14 @@ A closure in JavaScript is a function that remembers the variables from its oute
 
 ```javascript
 function outer() {
-    let count = 0; // Local variable in outer function
+  let count = 0; // Local variable in outer function
 
-    function inner() {
-        count++; // Inner function accesses outer function's variable
-        console.log(count);
-    }
+  function inner() {
+    count++; // Inner function accesses outer function's variable
+    console.log(count);
+  }
 
-    return inner; // Returning inner function
+  return inner; // Returning inner function
 }
 
 const counter = outer(); // outer() executes and returns inner()
@@ -2120,23 +2110,22 @@ counter(); // Output: 3
 - Closures allow us to create private variables in JavaScript.
 
 ```javascript
-
 function createCounter() {
-    let count = 0; // Private variable
+  let count = 0; // Private variable
 
-    return {
-        increment: function() {
-            count++;
-            console.log(count);
-        },
-        decrement: function() {
-            count--;
-            console.log(count);
-        },
-        getCount: function() {
-            return count;
-        }
-    };
+  return {
+    increment: function () {
+      count++;
+      console.log(count);
+    },
+    decrement: function () {
+      count--;
+      console.log(count);
+    },
+    getCount: function () {
+      return count;
+    },
+  };
 }
 
 const counter = createCounter();
@@ -2150,9 +2139,9 @@ console.log(counter.getCount()); // 1
 
 ```javascript
 function multiplier(factor) {
-    return function(num) {
-        return num * factor;
-    };
+  return function (num) {
+    return num * factor;
+  };
 }
 
 const double = multiplier(2);
@@ -2160,7 +2149,6 @@ const triple = multiplier(3);
 
 console.log(double(5)); // Output: 10
 console.log(triple(5)); // Output: 15
-
 ```
 
 - Each function (double and triple) keeps its own factor value due to closures.
@@ -2169,13 +2157,12 @@ console.log(triple(5)); // Output: 15
 
 ```javascript
 function delayedGreeting(name, delay) {
-    setTimeout(() => {
-        console.log(`Hello, ${name}!`);
-    }, delay);
+  setTimeout(() => {
+    console.log(`Hello, ${name}!`);
+  }, delay);
 }
 
 delayedGreeting("Rishabh", 2000); // Output after 2 seconds: "Hello, Rishabh!"
-
 ```
 
 `The callback inside setTimeout retains access to name, even after delayedGreeting has finished executing.`
@@ -2190,19 +2177,18 @@ A callback function is a function that is passed as an argument to another funct
 
 ```javascript
 function greet(name, callback) {
-    console.log("Hello, " + name);
-    callback(); // Executing the callback function
+  console.log("Hello, " + name);
+  callback(); // Executing the callback function
 }
 
 function sayGoodbye() {
-    console.log("Goodbye!");
+  console.log("Goodbye!");
 }
 
 greet("Rishabh", sayGoodbye);
 // Output:
 // Hello, Rishabh
 // Goodbye!
-
 ```
 
 `✅ The sayGoodbye function is passed as a callback to greet() and gets executed inside greet()`
@@ -2219,12 +2205,12 @@ greet("Rishabh", sayGoodbye);
 
 ```javascript
 function greet(name, callback) {
-    console.log("Hello, " + name);
-    callback();
+  console.log("Hello, " + name);
+  callback();
 }
 
-greet("Rishabh", function() {
-    console.log("This is an anonymous callback function.");
+greet("Rishabh", function () {
+  console.log("This is an anonymous callback function.");
 });
 ```
 
@@ -2235,8 +2221,8 @@ greet("Rishabh", function() {
 ```javascript
 console.log("Start");
 
-setTimeout(function() {
-    console.log("This message appears after 2 seconds");
+setTimeout(function () {
+  console.log("This message appears after 2 seconds");
 }, 2000);
 
 console.log("End");
@@ -2251,8 +2237,8 @@ console.log("End");
 ```javascript
 let numbers = [1, 2, 3];
 
-numbers.forEach(function(num) {
-    console.log(num * 2);
+numbers.forEach(function (num) {
+  console.log(num * 2);
 });
 // Output: 2, 4, 6
 ```
@@ -2262,8 +2248,8 @@ numbers.forEach(function(num) {
 `✅ Using map()`
 
 ```javascript
-let doubled = numbers.map(function(num) {
-    return num * 2;
+let doubled = numbers.map(function (num) {
+  return num * 2;
 });
 console.log(doubled); // Output: [2, 4, 6]
 ```
@@ -2271,8 +2257,8 @@ console.log(doubled); // Output: [2, 4, 6]
 6. `Callback Function in Event Handling`
 
 ```javascript
-document.getElementById("btn").addEventListener("click", function() {
-    console.log("Button clicked!");
+document.getElementById("btn").addEventListener("click", function () {
+  console.log("Button clicked!");
 });
 ```
 
@@ -2284,35 +2270,170 @@ document.getElementById("btn").addEventListener("click", function() {
 
 ```javascript
 function step1(callback) {
-    setTimeout(() => {
-        console.log("Step 1 completed");
-        callback();
-    }, 1000);
+  setTimeout(() => {
+    console.log("Step 1 completed");
+    callback();
+  }, 1000);
 }
 
 function step2(callback) {
-    setTimeout(() => {
-        console.log("Step 2 completed");
-        callback();
-    }, 1000);
+  setTimeout(() => {
+    console.log("Step 2 completed");
+    callback();
+  }, 1000);
 }
 
 function step3() {
-    setTimeout(() => {
-        console.log("Step 3 completed");
-    }, 1000);
+  setTimeout(() => {
+    console.log("Step 3 completed");
+  }, 1000);
 }
 
 // Callback hell (nested callbacks)
 step1(() => {
-    step2(() => {
-        step3();
-    });
+  step2(() => {
+    step3();
+  });
 });
 ```
 
 - ❌ This is called "Callback Hell" because the code is deeply nested and hard to manage.
 
 - ✅ Solution: Use Promises or Async/Await (we will learn later).
+
+`NOTE`
+
+Callbacks can be either synchronous or asynchronous, depending on the context in which they are called, not inherently one or the other. A callback is synchronous if the function that calls it executes the callback immediately, while an asynchronous callback is executed later, after an asynchronous operation completes
+
+`Synchronous Callbacks:`
+
+When a function immediately calls the callback after it has completed its task, it's a synchronous callback
+
+`Asynchronous Callbacks:`
+
+If the function that calls the callback uses asynchronous operations, such as network requests or timers, the callback is executed later, after the asynchronous operation completes
+
+`Example :`
+
+- **Synchronous** : myArray.forEach(callbackFunction) (the callback is executed immediately for each element).
+- **Asynchronous** : setTimeout(callbackFunction, 1000) (the callback is executed after 1000 milliseconds
+
+[🔝 Back to Top](#table-of-contents)
+
+## 25. Higher-Order Functions
+
+A Higher-Order Function (HOF) is a function that takes another function as an argument or returns a function as a result
+
+- `Example`
+
+```javascript
+function greet(name) {
+  return function (message) {
+    console.log(`Hello ${name}, ${message}`);
+  };
+}
+
+const greetRishabh = greet("Rishabh");
+greetRishabh("Good Morning!"); // Output: Hello Rishabh, Good Morning!
+```
+
+- ✅ greet() returns another function, which remembers the name due to closures.
+
+**1. Why Use Higher-Order Functions?**
+
+- Code reusability
+- Better readability & maintainability
+- Useful for functional programming
+
+**2. HOFs with Callbacks**
+
+Higher-order functions take a function as an argument.
+
+- `Example :`
+
+```javascript
+function operate(num1, num2, operation) {
+  return operation(num1, num2);
+}
+
+function add(a, b) {
+  return a + b;
+}
+
+function multiply(a, b) {
+  return a * b;
+}
+
+console.log(operate(5, 3, add)); // Output: 8
+console.log(operate(5, 3, multiply)); // Output: 15
+```
+
+- ✅ operate() is a Higher-Order Function because it takes operation (a function) as an argument.
+
+**3. Common Higher-Order Functions in JavaScript**
+
+- JavaScript provides several built-in HOFs like map(), filter(), reduce().
+
+`✅ Using map()`
+
+```javascript
+let numbers = [1, 2, 3, 4];
+
+let doubled = numbers.map(function (num) {
+  return num * 2;
+});
+
+console.log(doubled); // Output: [2, 4, 6, 8]
+```
+
+`✅ map() is a HOF because it takes a function as an argument and applies it to each array element.`
+
+`✅ Using filter()`
+
+```javascript
+let numbers = [1, 2, 3, 4];
+let evenNumbers = numbers.filter(function (num) {
+  return num % 2 === 0;
+});
+
+console.log(evenNumbers); // Output: [2, 4]
+```
+
+```
+✅ filter() takes a function and filters elements based on a condition.
+
+```
+
+`✅ Using reduce()`
+
+```javascript
+let numbers = [1, 2, 3, 4];
+
+let sum = numbers.reduce(function (total, num) {
+  return total + num;
+}, 0);
+
+console.log(sum); // Output: 10
+```
+
+`✅ reduce() accumulates values based on the provided function.`
+
+**4. HOF Returning a Function**
+
+- Higher-order functions can return another function.
+
+```javascript
+function power(exponent) {
+    return function(number) {
+        return Math.pow(number, exponent);
+    };
+}
+
+const square = power(2);
+const cube = power(3);
+
+console.log(square(5)); // Output: 25
+console.log(cube(2));   // Output: 8
+```
 
 [🔝 Back to Top](#table-of-contents)
