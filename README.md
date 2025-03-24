@@ -2424,16 +2424,192 @@ console.log(sum); // Output: 10
 
 ```javascript
 function power(exponent) {
-    return function(number) {
-        return Math.pow(number, exponent);
-    };
+  return function (number) {
+    return Math.pow(number, exponent);
+  };
 }
 
 const square = power(2);
 const cube = power(3);
 
 console.log(square(5)); // Output: 25
-console.log(cube(2));   // Output: 8
+console.log(cube(2)); // Output: 8
 ```
+
+[🔝 Back to Top](#table-of-contents)
+
+## 26. Object and Array Destructuring in JavaScript
+
+Destructuring is a feature in JavaScript that allows you to unpack values from arrays or properties from objects easily into variables.
+
+**1. Array Destructuring**
+
+Instead of accessing elements one by one, we can use destructuring.
+
+```javascript
+const numbers = [10, 20, 30];
+
+const [a, b, c] = numbers;
+
+console.log(a); // Output: 10
+console.log(b); // Output: 20
+console.log(c); // Output: 30
+```
+
+`✅ Each variable gets a corresponding array element based on its position.`
+
+**2. Skipping Values in Array Destructuring**
+
+```javascript
+const numbers = [10, 20, 30, 40];
+
+const [first, , third] = numbers;
+
+console.log(first); // Output: 10
+console.log(third); // Output: 30
+```
+
+`✅ Skipping the second element (20) using , , notation.`
+
+**3. Swapping Variables Using Destructuring**
+
+- A simple way to swap two variables without using a third variable.
+
+```javascript
+let x = 5,
+  y = 10;
+
+[x, y] = [y, x];
+
+console.log(x); // Output: 10
+console.log(y); // Output: 5
+```
+
+`✅ Directly swaps values without using extra variables.`
+
+**4. Rest Operator in Array Destructuring**
+
+- You can use the rest operator (...) to collect remaining values.
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+const [first, second, ...rest] = numbers;
+
+console.log(first); // Output: 1
+console.log(second); // Output: 2
+console.log(rest); // Output: [3, 4, 5]
+```
+
+`✅ The rest variable collects all remaining values into an array.`
+
+**5. Object Destructuring**
+
+Extract values from an object easily.
+
+```javascript
+const person = {
+    name: "Rishabh",
+    age: 22,
+    city: "Delhi"
+};
+
+const { name, age, city } = person;
+
+console.log(name); // Output: Rishabh
+console.log(age);  // Output: 22
+console.log(city); // Output: Delhi
+
+```
+
+`✅ Each variable gets the value of the corresponding object property.`
+
+
+**6. Renaming Variables While Destructuring**
+
+- You can rename variables to avoid conflicts.
+
+```javascript
+
+const user = {
+    username: "rishabh123",
+    email: "rishabh@example.com"
+};
+
+const { username: userName, email: userEmail } = user;
+
+console.log(userName);  // Output: rishabh123
+console.log(userEmail); // Output: rishabh@example.com
+```
+`✅ username is renamed as userName and email as userEmail.`
+
+**7. Default Values in Object Destructuring**
+
+- If a property doesn't exist, a default value is assigned.
+
+```javascript
+const person = { name: "Rishabh", age: 22 };
+
+const { name, age, country = "India" } = person;
+
+console.log(name);    // Output: Rishabh
+console.log(age);     // Output: 22
+console.log(country); // Output: India (default value)
+```
+
+`✅ If country is missing, the default value "India" is used.`
+
+
+**8. Nested Object Destructuring**
+
+- You can extract values from nested objects.
+
+```javascript
+const employee = {
+    id: 101,
+    details: {
+        name: "Rishabh",
+        department: "IT"
+    }
+};
+
+const { details: { name, department } } = employee;
+
+console.log(name);       // Output: Rishabh
+console.log(department); // Output: IT
+
+```
+
+`✅ Extracting name and department from the details object.`
+
+**9. Function Parameters with Destructuring**
+
+`✅ Array Destructuring in Functions`
+
+```javascript
+function sum([a, b]) {
+    return a + b;
+}
+
+console.log(sum([5, 10])); // Output: 15
+```
+
+✅ Function takes an array as an argument and destructures it inside the parameter list.
+
+`✅ Object Destructuring in Functions`
+
+```
+function displayUser({ name, age }) {
+    console.log(`User: ${name}, Age: ${age}`);
+}
+
+const user = { name: "Rishabh", age: 22, city: "Delhi" };
+
+displayUser(user); 
+// Output: User: Rishabh, Age: 22
+```
+
+✅ Only name and age are extracted from the user object.
+
 
 [🔝 Back to Top](#table-of-contents)
