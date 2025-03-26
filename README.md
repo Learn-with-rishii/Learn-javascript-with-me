@@ -31,6 +31,9 @@
 | 23  | [Closures in JavaScript](#23closures-in-javascript)                                                      |
 | 24  | [Callback Functions in JavaScript ](#24-callback-functions-in-javascript)                                |
 | 25  | [Higher-Order Functions](#25-higher-order-functions)                                                     |
+| 26  | [Object and Array Destructuring in JavaScript](#26-object-and-array-destructuring-in-javascript)         |
+| 27  | [Array Methods: find(), some(), and every() ](#27-array-methods-find-some-and-every)                     |
+| 28  | [Asynchronous JavaScript setTimeout setInterval](#28-asynchronous-javascript-settimeout-setinterval)     |
 
 <!-- TOC_END -->
 
@@ -2509,38 +2512,36 @@ Extract values from an object easily.
 
 ```javascript
 const person = {
-    name: "Rishabh",
-    age: 22,
-    city: "Delhi"
+  name: "Rishabh",
+  age: 22,
+  city: "Delhi",
 };
 
 const { name, age, city } = person;
 
 console.log(name); // Output: Rishabh
-console.log(age);  // Output: 22
+console.log(age); // Output: 22
 console.log(city); // Output: Delhi
-
 ```
 
 `✅ Each variable gets the value of the corresponding object property.`
-
 
 **6. Renaming Variables While Destructuring**
 
 - You can rename variables to avoid conflicts.
 
 ```javascript
-
 const user = {
-    username: "rishabh123",
-    email: "rishabh@example.com"
+  username: "rishabh123",
+  email: "rishabh@example.com",
 };
 
 const { username: userName, email: userEmail } = user;
 
-console.log(userName);  // Output: rishabh123
+console.log(userName); // Output: rishabh123
 console.log(userEmail); // Output: rishabh@example.com
 ```
+
 `✅ username is renamed as userName and email as userEmail.`
 
 **7. Default Values in Object Destructuring**
@@ -2552,13 +2553,12 @@ const person = { name: "Rishabh", age: 22 };
 
 const { name, age, country = "India" } = person;
 
-console.log(name);    // Output: Rishabh
-console.log(age);     // Output: 22
+console.log(name); // Output: Rishabh
+console.log(age); // Output: 22
 console.log(country); // Output: India (default value)
 ```
 
 `✅ If country is missing, the default value "India" is used.`
-
 
 **8. Nested Object Destructuring**
 
@@ -2566,18 +2566,19 @@ console.log(country); // Output: India (default value)
 
 ```javascript
 const employee = {
-    id: 101,
-    details: {
-        name: "Rishabh",
-        department: "IT"
-    }
+  id: 101,
+  details: {
+    name: "Rishabh",
+    department: "IT",
+  },
 };
 
-const { details: { name, department } } = employee;
+const {
+  details: { name, department },
+} = employee;
 
-console.log(name);       // Output: Rishabh
+console.log(name); // Output: Rishabh
 console.log(department); // Output: IT
-
 ```
 
 `✅ Extracting name and department from the details object.`
@@ -2588,7 +2589,7 @@ console.log(department); // Output: IT
 
 ```javascript
 function sum([a, b]) {
-    return a + b;
+  return a + b;
 }
 
 console.log(sum([5, 10])); // Output: 15
@@ -2605,11 +2606,317 @@ function displayUser({ name, age }) {
 
 const user = { name: "Rishabh", age: 22, city: "Delhi" };
 
-displayUser(user); 
+displayUser(user);
 // Output: User: Rishabh, Age: 22
 ```
 
 ✅ Only name and age are extracted from the user object.
 
+[🔝 Back to Top](#table-of-contents)
+
+## 27. Array Methods: find(), some(), and every()
+
+JavaScript provides powerful array methods like find(), some(), and every() to help search, validate, and check conditions efficiently.
+
+**1. find() Method**
+
+- The find() method returns the first element in an array that satisfies a condition.
+
+```javascript
+const numbers = [10, 25, 30, 45, 50];
+
+const result = numbers.find((num) => num > 20);
+
+console.log(result); // Output: 25 (first number greater than 20)
+```
+
+- find() stops searching once it finds the first match.
+
+`✅ find() with Objects`
+
+```javascript
+const users = [
+  { id: 1, name: "Rishabh", age: 22 },
+  { id: 2, name: "Amit", age: 25 },
+  { id: 3, name: "Raj", age: 30 },
+];
+
+const user = users.find((person) => person.age > 24);
+
+console.log(user);
+// Output: { id: 2, name: "Amit", age: 25 }
+```
+
+- ✅ find() returns the first object where age > 24.
+
+`✅ When find() Returns undefined`
+
+- If no match is found, find() returns undefined.
+
+```javascript
+const numbers = [1, 3, 5, 7];
+
+const result = numbers.find((num) => num % 2 === 0);
+
+console.log(result); // Output: undefined (no even number)
+```
+
+**2. some() Method**
+
+- The some() method checks if at least one element in the array satisfies a condition. It returns true or false.
+
+```javascript
+const numbers = [1, 3, 5, 8];
+
+const hasEven = numbers.some((num) => num % 2 === 0);
+
+console.log(hasEven); // Output: true (because 8 is even)
+```
+
+- ✅ Returns true if any element passes the test.
+
+`✅ some() with Objects`
+
+```javascript
+const users = [
+  { name: "Rishabh", age: 22 },
+  { name: "Amit", age: 17 },
+  { name: "Raj", age: 30 },
+];
+
+const isAdultPresent = users.some((user) => user.age >= 18);
+
+console.log(isAdultPresent); // Output: true (at least one person is 18+)
+```
+
+- Checks if any object has age >= 18.
+
+`✅ When some() Returns false`
+
+- If no match is found, it returns false.
+
+```
+const numbers = [1, 3, 5, 7];
+
+const hasEven = numbers.some(num => num % 2 === 0);
+
+console.log(hasEven); // Output: false (no even number)
+```
+
+**3. every() Method**
+
+- The every() method checks if all elements satisfy a condition. It returns true or false.
+
+```
+const numbers = [2, 4, 6, 8];
+
+const allEven = numbers.every(num => num % 2 === 0);
+
+console.log(allEven); // Output: true (all are even)
+
+```
+
+- ✅ Returns true only if all elements pass the condition.
+
+`✅ every() with Objects`
+
+```
+const users = [
+    { name: "Rishabh", age: 22 },
+    { name: "Amit", age: 18 },
+    { name: "Raj", age: 30 }
+];
+
+const allAdults = users.every(user => user.age >= 18);
+
+console.log(allAdults); // Output: true (all users are 18+)
+```
+
+✅ Checks if all users are adults (age >= 18).
+
+`✅ When every() Returns false`
+
+- If any element fails the condition, it returns false.
+
+```
+const numbers = [2, 4, 6, 7];
+
+const allEven = numbers.every(num => num % 2 === 0);
+
+console.log(allEven); // Output: false (because 7 is odd)
+```
+
+**Differences Between `find()`, `some()`, and `every()`**
+
+| Method    | Returns                               | Stops Searching After | Used For                                    |
+| --------- | ------------------------------------- | --------------------- | ------------------------------------------- |
+| `find()`  | First matching element or `undefined` | First match           | Finding an element                          |
+| `some()`  | `true` or `false`                     | First `true` value    | Checking if **at least one** element passes |
+| `every()` | `true` or `false`                     | First `false` value   | Checking if **all** elements pass           |
+
+### Key Points:
+
+- **`find()`** returns the first matching element and stops searching.
+- **`some()`** returns `true` if **at least one** element satisfies the condition.
+- **`every()`** returns `true` only if **all** elements satisfy the condition.
+
+[🔝 Back to Top](#table-of-contents)
+
+## 28. Asynchronous JavaScript setTimeout setInterval
+
+JavaScript is single-threaded, meaning it executes one task at a time. However, it can handle asynchronous operations using functions like setTimeout and setInterval. These functions allow JavaScript to perform delayed execution and repeated execution without blocking the main thread.
+
+**1. What is Asynchronous JavaScript?**
+
+🔹 `Synchronous JavaScript` → Executes line by line, blocking further execution.
+
+🔹 `Asynchronous JavaScript` → Executes non-blocking operations like timers, API calls, and event listeners.
+
+🔹 `Example of Synchronous vs Asynchronous`
+
+```javascript
+console.log("Start");
+
+setTimeout(() => console.log("Inside setTimeout"), 2000);
+
+console.log("End");
+```
+
+✅ Output:
+
+```
+Start
+End
+Inside setTimeout
+```
+
+🔹 JavaScript doesn’t wait for setTimeout(2000) to finish and executes "End" first.
+
+**2. setTimeout() – Execute Code After Delay**
+
+🔹 `setTimeout()` executes a function after a specified delay (in milliseconds).
+
+🔹`Syntax:`
+
+```javascript
+setTimeout(function, delay, param1, param2, ...);
+```
+
+🔹`Example`:
+
+```javascript
+console.log("Before setTimeout");
+
+setTimeout(() => {
+  console.log("Executed after 2 seconds");
+}, 2000);
+
+console.log("After setTimeout");
+```
+
+`✅ Output:`
+
+```javascript
+Before setTimeout
+After setTimeout
+Executed after 2 seconds
+```
+
+🔹 The delay does not pause JavaScript execution.
+
+**3. setTimeout with Parameters**
+
+You can pass arguments to the callback function in setTimeout.
+
+```javascript
+function greet(name) {
+  console.log(`Hello, ${name}!`);
+}
+
+setTimeout(greet, 3000, "Rishabh");
+// Output after 3 seconds: Hello, Rishabh!
+```
+
+`Note: ✅ No need to use an anonymous function.`
+
+**4. Clearing setTimeout (Stopping Execution)**
+
+Use clearTimeout() to cancel a scheduled setTimeout.
+
+```javascript
+let timer = setTimeout(() => console.log("This will not run"), 3000);
+clearTimeout(timer);
+```
+
+✅ The function inside setTimeout is never executed.
+
+**5. setInterval() – Repeated Execution**
+
+🔹 setInterval() executes a function repeatedly after a specified interval.
+
+🔹`Syntax:`
+
+```javascript
+setInterval(function, interval, param1, param2, ...);
+```
+
+🔹`Example:`
+
+```javascript
+let count = 1;
+
+let interval = setInterval(() => {
+  console.log(`Count: ${count}`);
+  count++;
+
+  if (count > 5) clearInterval(interval);
+}, 1000);
+```
+
+`✅ Output:`
+
+```
+Count: 1
+Count: 2
+Count: 3
+Count: 4
+Count: 5
+```
+
+🔹 clearInterval(interval) stops the repeated execution.
+
+**6. Real-World Example: Digital Clock**
+
+```javascript
+setInterval(() => {
+  let time = new Date().toLocaleTimeString();
+  console.log(time);
+}, 1000);
+```
+
+✅ Displays the current time every second.
+
+**7. Difference Between `setTimeout` and `setInterval`**
+
+| Feature       | `setTimeout()`            | `setInterval()`                    |
+| ------------- | ------------------------- | ---------------------------------- |
+| **Execution** | Runs **once** after delay | Runs **repeatedly** at intervals   |
+| **Use Case**  | Delayed execution         | Continuous execution (like timers) |
+| **Stopping**  | `clearTimeout()`          | `clearInterval()`                  |
+
+**8. setTimeout Inside setTimeout (Recursive setTimeout)**
+
+🔹 Instead of setInterval, you can use recursive setTimeout for better control.
+
+```javascript
+function repeat() {
+  console.log("Hello!");
+  setTimeout(repeat, 1000);
+}
+
+repeat();
+```
+
+✅ This approach is better because it avoids overlapping executions.
 
 [🔝 Back to Top](#table-of-contents)
