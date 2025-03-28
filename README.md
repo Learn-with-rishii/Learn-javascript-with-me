@@ -34,6 +34,7 @@
 | 26  | [Object and Array Destructuring in JavaScript](#26-object-and-array-destructuring-in-javascript)         |
 | 27  | [Array Methods: find(), some(), and every() ](#27-array-methods-find-some-and-every)                     |
 | 28  | [Asynchronous JavaScript setTimeout setInterval](#28-asynchronous-javascript-settimeout-setinterval)     |
+| 29  | [Event Loop in JavaScript](#29-event-loop-in-javascript)                                                 |
 
 <!-- TOC_END -->
 
@@ -2918,5 +2919,141 @@ repeat();
 ```
 
 ✅ This approach is better because it avoids overlapping executions.
+
+[🔝 Back to Top](#table-of-contents)
+
+## 29. Event Loop in JavaScript
+
+- In the world of JavaScript, the event loop is a mechanism that enables asynchronous operations to be executed in a non-blocking manner.
+
+- JavaScript is single-threaded, it uses the event loop to manage the execution of multiple tasks without blocking the main thread.
+
+- JavaScript is single-threaded, meaning it executes one operation at a time. However, it can handle asynchronous tasks like API calls, timers, and DOM events without blocking execution. This is managed by the Event Loop.
+
+**2. JavaScript Execution Model**
+
+JavaScript uses the following components to handle code execution:
+
+- Call Stack – Executes synchronous code.
+
+- Web APIs – Handles async tasks (e.g., setTimeout, fetch).
+
+- Callback Queue – Stores callbacks for execution.
+
+- Microtask Queue – Stores promises and MutationObserver tasks.
+
+- Event Loop – Moves tasks from the queue to the call stack.
+
+**3. How the Event Loop Works?**
+
+Step-by-Step Process:
+
+1️⃣ Synchronous code runs first (inside the Call Stack).
+
+2️⃣ Asynchronous tasks (like setTimeout, fetch, Promises) move to Web APIs.
+
+3️⃣ Once an async task is complete, its callback is placed in either:
+
+- Microtask Queue (for Promises, MutationObserver).
+
+- Callback Queue (for setTimeout, setInterval, DOM events).
+
+4️⃣ Event Loop checks:
+
+- If the Call Stack is empty, it moves tasks from the Microtask Queue first.
+
+- Then, it moves tasks from the Callback Queue (if no microtasks are pending).
+
+**4. Example: Understanding Event Loop**
+
+Synchronous vs Asynchronous Execution
+
+```javascript
+console.log("Start");
+
+setTimeout(() => console.log("Inside setTimeout"), 0);
+
+Promise.resolve().then(() => console.log("Inside Promise"));
+
+console.log("End");
+```
+
+**`Execution Order:`**
+
+- 1️⃣ `"Start"` → (Synchronous, runs first in Call Stack)
+- 2️⃣ `"End"` → (Synchronous, runs second in Call Stack)
+- 3️⃣ `"Inside Promise"` → (Microtask Queue, runs before setTimeout)
+- 4️⃣ `"Inside setTimeout"` → (Callback Queue, runs last)
+
+**`Working`**
+
+The event loop in JavaScript handles asynchronous tasks and ensures smooth execution. When the code runs, JavaScript first executes all synchronous tasks line by line.
+
+- "Start" is logged first.
+
+- The setTimeout() function is called, but since it is asynchronous, it goes to the Web APIs and waits for the timer to finish.
+
+- The Promise is also asynchronous, but it gets added to the microtask queue (which has higher priority than the callback queue of setTimeout()).
+
+- "End" is logged next because it's synchronous.
+
+- The event loop checks the microtask queue first, so "Inside Promise" is logged.
+
+- Finally, the event loop processes the callback queue, logging "Inside setTimeout".
+
+**`output`**
+
+```javascript
+Start
+End
+Inside Promise
+Inside setTimeout
+```
+
+**`Note:` 🔹 Promise executes before setTimeout because microtasks have higher priority.**
+
+**5. Microtask vs. Callback Queue (Priority Order)**
+
+| Task Type                                        | Execution Order                         |
+| ------------------------------------------------ | --------------------------------------- |
+| Synchronous Code                                 | Runs first in Call Stack                |
+| Microtask Queue (Promises, MutationObserver)     | Runs immediately after synchronous code |
+| Callback Queue (setTimeout, setInterval, Events) | Runs after Microtasks are cleared       |
+
+**6. Example: Microtask Priority Over setTimeout**
+
+```javascript
+setTimeout(() => console.log("setTimeout"), 0);
+
+Promise.resolve().then(() => console.log("Promise resolved"));
+
+console.log("Sync Code");
+```
+
+**output**
+
+```javascript
+Sync Code
+Promise resolved
+setTimeout
+```
+
+`🔹 Promise resolves before setTimeout because Microtasks run first.`
+
+**7. Real-World Use Cases of the Event Loop**
+
+🔹 Handling API Calls Efficiently
+
+```javascript
+console.log("Fetching data...");
+
+fetch("https://jsonplaceholder.typicode.com/todos/1")
+  .then((response) => response.json())
+  .then((data) => console.log("Data received:", data));
+
+console.log("Waiting for response...");
+```
+
+`✅ JavaScript doesn’t wait for fetch() to complete and executes the next statement!`
 
 [🔝 Back to Top](#table-of-contents)
