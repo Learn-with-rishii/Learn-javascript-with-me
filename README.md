@@ -35,6 +35,7 @@
 | 27  | [Array Methods: find(), some(), and every() ](#27-array-methods-find-some-and-every)                     |
 | 28  | [Asynchronous JavaScript setTimeout setInterval](#28-asynchronous-javascript-settimeout-setinterval)     |
 | 29  | [Event Loop in JavaScript](#29-event-loop-in-javascript)                                                 |
+| 30  | [Spread and Rest Operators in JavaScript](#30-spread-and-rest-operators-in-javascript)                   |
 
 <!-- TOC_END -->
 
@@ -3057,3 +3058,190 @@ console.log("Waiting for response...");
 `✅ JavaScript doesn’t wait for fetch() to complete and executes the next statement!`
 
 [🔝 Back to Top](#table-of-contents)
+
+## 30. Spread and Rest Operators in JavaScript
+
+JavaScript introduced Spread (...) and Rest (...) operators in ES6. Though they look the same (...), they serve different purposes.
+
+🔹 `Spread (...)` → Expands elements from arrays/objects.
+
+🔹 `Rest (...)` → Gathers multiple elements into an array.
+
+**1. Spread Operator (...) – Expanding Elements**
+
+- `Expanding an Array`
+
+```javascript
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1, 4, 5, 6];
+
+console.log(arr2);
+// Output: [1, 2, 3, 4, 5, 6]
+```
+
+`✅ Spread operator expands elements from arr1 into arr2.`
+
+- `Copying an Array (Avoids Reference Issues)`
+
+```javascript
+const original = [10, 20, 30];
+const copy = [...original];
+
+copy.push(40);
+
+console.log(original); // [10, 20, 30] (Original remains unchanged)
+console.log(copy); // [10, 20, 30, 40]
+```
+
+`✅ Unlike = assignment, the spread operator creates a new array, not a reference.`
+
+- `Merging Arrays`
+
+```javascript
+const first = [1, 2];
+const second = [3, 4];
+const merged = [...first, ...second];
+
+console.log(merged);
+// Output: [1, 2, 3, 4]
+```
+
+`✅ Merges arrays without using concat().`
+
+- `Using Spread in Function Arguments`
+
+```javascript
+function sum(a, b, c) {
+  return a + b + c;
+}
+
+const numbers = [10, 20, 30];
+
+console.log(sum(...numbers));
+// Output: 60
+```
+
+`✅ Passes array elements as individual arguments.`
+
+- `Spreading Objects (Shallow Copy)`
+
+```javascript
+const user = { name: "Rishabh", age: 22 };
+const updatedUser = { ...user, role: "Developer" };
+
+console.log(updatedUser);
+// Output: { name: "Rishabh", age: 22, role: "Developer" }
+```
+
+`✅ Copies properties and allows modifications.`
+
+**2. Rest Operator (...) – Collecting Elements**
+
+- `Using Rest in Function Parameters`
+
+```javascript
+function add(...numbers) {
+  return numbers.reduce((sum, num) => sum + num, 0);
+}
+
+console.log(add(10, 20, 30, 40));
+// Output: 100
+```
+
+`✅ Gathers multiple arguments into an array.`
+
+- ` Rest Operator in Destructuring (Arrays)`
+
+```javascript
+const [first, second, ...remaining] = [1, 2, 3, 4, 5];
+
+console.log(first, second); // 1 2
+console.log(remaining); // [3, 4, 5]
+```
+
+`✅ Extracts first two elements, and the rest goes into an array.`
+
+- ` Rest Operator in Destructuring (Objects)`
+
+```javascript
+const user = { name: "Rishabh", age: 22, role: "Developer" };
+const { name, ...details } = user;
+
+console.log(name); // "Rishabh"
+console.log(details); // { age: 22, role: "Developer" }
+```
+
+`✅ Extracts name, and the rest is stored in details.`
+
+## 3. Spread (`...`) vs. Rest (`...`)
+
+| Feature               | Spread (`...`)                  | Rest (`...`)                       |
+| --------------------- | ------------------------------- | ---------------------------------- |
+| **Purpose**           | Expands elements                | Collects elements                  |
+| **Used With**         | Arrays, Objects, Function Calls | Function Parameters, Destructuring |
+| **Example (Arrays)**  | `const newArr = [...arr]`       | `[first, ...rest] = arr`           |
+| **Example (Objects)** | `{ ...obj }`                    | `{ key, ...rest } = obj`           |
+
+[🔝 Back to Top](#table-of-contents)
+
+## 31. ES6+ Features in JavaScript
+
+ES6 (ECMAScript 2015) and later versions (ES7, ES8, ES9, ES10, etc.) introduced many powerful features that improved JavaScript's readability, maintainability, and performance.
+
+**1. ES6 (ECMAScript 2015) Features**
+
+ **`a. let & const (Block-scoped Variables)`** 
+
+🔹 let and const provide block-scoped variables, replacing var.
+
+```javascript
+let x = 10;
+const y = 20;
+```
+
+✅ let can be reassigned, but const cannot.
+
+**`b. Template Literals (String Interpolation)`**
+
+🔹 Use backticks `, and embed expressions with ${}.
+
+```javascript
+const name = "Rishabh";
+console.log(`Hello, ${name}!`); 
+// Output: Hello, Rishabh!
+```
+
+**`c. Arrow Functions (Shorter Function Syntax)`**
+
+🔹 More concise function syntax.
+
+```javascript
+const add = (a, b) => a + b;
+console.log(add(5, 3)); // Output: 8
+```
+
+`✅ Lexical this → Arrow functions do not change the this value.`
+
+**`d. Default Parameters`**
+
+🔹 Provide default values for function parameters.
+
+```javascript
+function greet(name = "Guest") {
+    console.log(`Hello, ${name}!`);
+}
+greet(); // Output: Hello, Guest!
+```
+
+**`e. Destructuring (Arrays & Objects)`**
+
+🔹 Extract values easily from objects and arrays.
+
+```javascript
+const user = { name: "Rishabh", age: 22 };
+const { name, age } = user;
+console.log(name, age); // Output: Rishabh 22
+```
+
+
+
