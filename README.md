@@ -36,6 +36,8 @@
 | 28  | [Asynchronous JavaScript setTimeout setInterval](#28-asynchronous-javascript-settimeout-setinterval)     |
 | 29  | [Event Loop in JavaScript](#29-event-loop-in-javascript)                                                 |
 | 30  | [Spread and Rest Operators in JavaScript](#30-spread-and-rest-operators-in-javascript)                   |
+| 31  | [ES6+ Features in JavaScript](#31-es6-features-in-javascript)                                            |
+| 32  | [Error Handling in JavaScript](#32-error-handling-in-javascript)                                         |
 
 <!-- TOC_END -->
 
@@ -3190,7 +3192,7 @@ ES6 (ECMAScript 2015) and later versions (ES7, ES8, ES9, ES10, etc.) introduced 
 
 **1. ES6 (ECMAScript 2015) Features**
 
- **`a. let & const (Block-scoped Variables)`** 
+**`a. let & const (Block-scoped Variables)`**
 
 🔹 let and const provide block-scoped variables, replacing var.
 
@@ -3207,7 +3209,7 @@ const y = 20;
 
 ```javascript
 const name = "Rishabh";
-console.log(`Hello, ${name}!`); 
+console.log(`Hello, ${name}!`);
 // Output: Hello, Rishabh!
 ```
 
@@ -3228,7 +3230,7 @@ console.log(add(5, 3)); // Output: 8
 
 ```javascript
 function greet(name = "Guest") {
-    console.log(`Hello, ${name}!`);
+  console.log(`Hello, ${name}!`);
 }
 greet(); // Output: Hello, Guest!
 ```
@@ -3253,7 +3255,7 @@ const numbers = [1, 2, 3];
 const newNumbers = [...numbers, 4, 5];
 
 function sum(...nums) {
-    return nums.reduce((a, b) => a + b);
+  return nums.reduce((a, b) => a + b);
 }
 console.log(sum(1, 2, 3)); // Output: 6
 ```
@@ -3264,12 +3266,12 @@ console.log(sum(1, 2, 3)); // Output: 6
 
 ```javascript
 class Person {
-    constructor(name) {
-        this.name = name;
-    }
-    greet() {
-        console.log(`Hello, ${this.name}`);
-    }
+  constructor(name) {
+    this.name = name;
+  }
+  greet() {
+    console.log(`Hello, ${this.name}`);
+  }
 }
 const person = new Person("Rishabh");
 person.greet(); // Output: Hello, Rishabh
@@ -3281,15 +3283,16 @@ person.greet(); // Output: Hello, Rishabh
 
 ```javascript
 const fetchData = () => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => resolve("Data received"), 2000);
-    });
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve("Data received"), 2000);
+  });
 };
 fetchData().then(console.log); // Output (after 2s): Data received
 ```
+
 ## 2. ES7 (ECMAScript 2016) Features
 
-**`a. Exponentiation Operator (**)`**
+**`a. Exponentiation Operator (**)`\*\*
 
 ```javascript
 console.log(2 ** 3); // Output: 8
@@ -3308,12 +3311,11 @@ console.log(arr.includes(20)); // Output: true
 
 ```javascript
 async function fetchData() {
-    let data = await fetch("https://jsonplaceholder.typicode.com/todos/1");
-    let json = await data.json();
-    console.log(json);
+  let data = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+  let json = await data.json();
+  console.log(json);
 }
 fetchData();
-
 ```
 
 **`b.  Object.entries() & Object.values()`**
@@ -3321,7 +3323,7 @@ fetchData();
 ```javascript
 const user = { name: "Rishabh", age: 22 };
 console.log(Object.entries(user)); // Output: [["name", "Rishabh"], ["age", 22]]
-console.log(Object.values(user));  // Output: ["Rishabh", 22]
+console.log(Object.values(user)); // Output: ["Rishabh", 22]
 ```
 
 ## 4. ES9 (ECMAScript 2018) Features
@@ -3333,16 +3335,16 @@ const user = { name: "Rishabh", age: 22, city: "Delhi" };
 const { city, ...details } = user;
 console.log(details); // Output: { name: "Rishabh", age: 22 }
 ```
-## 5.  ES10 (ECMAScript 2019) Features
 
+## 5. ES10 (ECMAScript 2019) Features
 
 **`Optional Catch Binding`**
 
 ```javascript
 try {
-    throw "Error!";
+  throw "Error!";
 } catch {
-    console.log("Caught an error!");
+  console.log("Caught an error!");
 }
 ```
 
@@ -3369,7 +3371,150 @@ console.log(user ?? "Guest"); // Output: Guest
 
 ```javascript
 const str = "Hello World, Hello JavaScript!";
-console.log(str.replaceAll("Hello", "Hi")); 
+console.log(str.replaceAll("Hello", "Hi"));
 // Output: Hi World, Hi JavaScript!
 ```
 
+[🔝 Back to Top](#table-of-contents)
+
+## 32. Error Handling in JavaScript
+
+JavaScript provides a mechanism for handling errors using the try-catch-finally block. This ensures that code execution doesn't stop unexpectedly when an error occurs.
+
+**1. Understanding try-catch-finally**
+
+| Block     | Purpose                                         |
+| --------- | ----------------------------------------------- |
+| `try`     | Code that might throw an error.                 |
+| `catch`   | Handles errors from the `try` block.            |
+| `finally` | Executes code **always**, regardless of errors. |
+
+- `Basic Example`
+
+```javascript
+try {
+  console.log(x); // Error: x is not defined
+} catch (error) {
+  console.log("An error occurred:", error.message);
+} finally {
+  console.log("This will always execute.");
+}
+```
+
+- ✅ If an error occurs in try, catch handles it.
+- ✅ finally runs whether an error occurs or not.
+
+- `Output:`
+
+```javascript
+An error occurred: x is not defined
+This will always execute.
+```
+
+**2. Handling Specific Errors**
+
+- JavaScript provides different error types, such as `ReferenceError`, `TypeError`, and `SyntaxError`.
+
+- `Handling Specific Errors`
+
+```javascript
+try {
+  let num = 5;
+  num.toUpperCase(); // TypeError
+} catch (error) {
+  if (error instanceof TypeError) {
+    console.log("Type Error:", error.message);
+  } else {
+    console.log("Some other error occurred.");
+  }
+}
+```
+
+- ✅ instanceof checks for specific error types.
+
+**3. Throwing Custom Errors**
+
+You can manually throw errors using throw.
+
+- `Throw Custom Errors`
+
+```javascript
+function divide(a, b) {
+  if (b === 0) {
+    throw new Error("Division by zero is not allowed.");
+  }
+  return a / b;
+}
+
+try {
+  console.log(divide(10, 0));
+} catch (error) {
+  console.log("Error:", error.message);
+}
+```
+
+- ✅ throw creates custom errors, which can be handled in catch.
+
+**4. Nested try-catch**
+
+- You can use nested try-catch for handling multiple levels of errors.
+
+```javascript
+try {
+  try {
+    JSON.parse("{invalidJson}");
+  } catch (error) {
+    console.log("Inner catch:", error.message);
+    throw new Error("Re-throwing error"); // Throwing it again
+  }
+} catch (error) {
+  console.log("Outer catch:", error.message);
+}
+```
+
+- ✅ Inner catch handles the first error, then re-throws it to the outer catch.
+
+**5. Using finally for Cleanup**
+
+- The finally block is useful for closing connections, releasing resources, etc.
+
+```javascript
+function fetchData() {
+  try {
+    console.log("Fetching data...");
+    throw new Error("Network Error");
+  } catch (error) {
+    console.log("Caught an error:", error.message);
+  } finally {
+    console.log("Cleaning up resources...");
+  }
+}
+
+fetchData();
+```
+
+- ✅ Even if an error occurs, finally always runs.
+
+**6. try-catch with Asynchronous Code**
+
+- When handling async operations, you must use try-catch inside async/await functions.
+
+- `Handling Errors in Async Code`
+
+```javascript
+async function fetchData() {
+  try {
+    let response = await fetch("invalid-url");
+    let data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.log("Async Error:", error.message);
+  }
+}
+
+fetchData();
+```
+
+- ✅ catch handles async errors inside an async function.
+
+[🔝 Back to Top](#table-of-contents)
