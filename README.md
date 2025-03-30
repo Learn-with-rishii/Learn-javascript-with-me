@@ -3243,5 +3243,133 @@ const { name, age } = user;
 console.log(name, age); // Output: Rishabh 22
 ```
 
+**`f. Spread and Rest Operators (...)`**
 
+🔹 `Spread (...)` → Expands arrays/objects.
+🔹 `Rest (...)` → Gathers remaining values into an array.
+
+```javascript
+const numbers = [1, 2, 3];
+const newNumbers = [...numbers, 4, 5];
+
+function sum(...nums) {
+    return nums.reduce((a, b) => a + b);
+}
+console.log(sum(1, 2, 3)); // Output: 6
+```
+
+**`g. Classes (OOP in JavaScript)`**
+
+🔹 class syntax for creating objects.
+
+```javascript
+class Person {
+    constructor(name) {
+        this.name = name;
+    }
+    greet() {
+        console.log(`Hello, ${this.name}`);
+    }
+}
+const person = new Person("Rishabh");
+person.greet(); // Output: Hello, Rishabh
+```
+
+**`h. Promises (Async Handling)`**
+
+🔹 Handle asynchronous operations without callback hell.
+
+```javascript
+const fetchData = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => resolve("Data received"), 2000);
+    });
+};
+fetchData().then(console.log); // Output (after 2s): Data received
+```
+## 2. ES7 (ECMAScript 2016) Features
+
+**`a. Exponentiation Operator (**)`**
+
+```javascript
+console.log(2 ** 3); // Output: 8
+```
+
+**`b. Array.prototype.includes()`**
+
+```javascript
+const arr = [10, 20, 30];
+console.log(arr.includes(20)); // Output: true
+```
+
+## 3. ES8 (ECMAScript 2017) Features
+
+**`a. Async/Await (Simplified Promises)`**
+
+```javascript
+async function fetchData() {
+    let data = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+    let json = await data.json();
+    console.log(json);
+}
+fetchData();
+
+```
+
+**`b.  Object.entries() & Object.values()`**
+
+```javascript
+const user = { name: "Rishabh", age: 22 };
+console.log(Object.entries(user)); // Output: [["name", "Rishabh"], ["age", 22]]
+console.log(Object.values(user));  // Output: ["Rishabh", 22]
+```
+
+## 4. ES9 (ECMAScript 2018) Features
+
+**`a. Rest/Spread for Objects`**
+
+```javascript
+const user = { name: "Rishabh", age: 22, city: "Delhi" };
+const { city, ...details } = user;
+console.log(details); // Output: { name: "Rishabh", age: 22 }
+```
+## 5.  ES10 (ECMAScript 2019) Features
+
+
+**`Optional Catch Binding`**
+
+```javascript
+try {
+    throw "Error!";
+} catch {
+    console.log("Caught an error!");
+}
+```
+
+## 6. ES11 (ECMAScript 2020) Features
+
+**`a. Optional Chaining (?.)`**
+
+```javascript
+const user = { profile: { name: "Rishabh" } };
+console.log(user.profile?.name); // Output: Rishabh
+console.log(user.address?.city); // Output: undefined
+```
+
+**`b. Nullish Coalescing (??)`**
+
+```javascript
+const user = null;
+console.log(user ?? "Guest"); // Output: Guest
+```
+
+## ES12 (ECMAScript 2021) Features
+
+**`a. Replace All (.replaceAll())`**
+
+```javascript
+const str = "Hello World, Hello JavaScript!";
+console.log(str.replaceAll("Hello", "Hi")); 
+// Output: Hi World, Hi JavaScript!
+```
 
