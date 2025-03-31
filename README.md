@@ -39,6 +39,7 @@
 | 31  | [ES6+ Features in JavaScript](#31-es6-features-in-javascript)                                            |
 | 32  | [Error Handling in JavaScript](#32-error-handling-in-javascript)                                         |
 | 33  | [Promises in JavaScript ](#33-promises-in-javascript)                                                    |
+| 34  | [Async/Await in JavaScript](#34-asyncawait-in-javascript)                                                |
 
 <!-- TOC_END -->
 
