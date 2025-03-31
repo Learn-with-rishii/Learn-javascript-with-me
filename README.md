@@ -3579,48 +3579,51 @@ Multiple .then() can be chained to handle sequential asynchronous tasks.
 
 ```javascript
 new Promise((resolve) => {
-    setTimeout(() => resolve(10), 1000);
+  setTimeout(() => resolve(10), 1000);
 })
-    .then((num) => {
-        console.log("First:", num);
-        return num * 2;
-    })
-    .then((num) => {
-        console.log("Second:", num);
-        return num * 3;
-    })
-    .then((num) => {
-        console.log("Third:", num);
-    })
-    .catch((error) => console.log("Error:", error));
+  .then((num) => {
+    console.log("First:", num);
+    return num * 2;
+  })
+  .then((num) => {
+    console.log("Second:", num);
+    return num * 3;
+  })
+  .then((num) => {
+    console.log("Third:", num);
+  })
+  .catch((error) => console.log("Error:", error));
 ```
+
 - ✅ This ensures operations execute one after another.
 
 `Output:`
 
 ```javascript
-First: 10
-Second: 20
-Third: 60
-````
+First: 10;
+Second: 20;
+Third: 60;
+```
 
 **4. Promise.all() – Execute Multiple Promises in Parallel**
 
 Used when multiple promises need to be resolved before proceeding.
 
 ```javascript
-
-const promise1 = new Promise((resolve) => setTimeout(() => resolve("Task 1"), 2000));
-const promise2 = new Promise((resolve) => setTimeout(() => resolve("Task 2"), 1000));
+const promise1 = new Promise((resolve) =>
+  setTimeout(() => resolve("Task 1"), 2000)
+);
+const promise2 = new Promise((resolve) =>
+  setTimeout(() => resolve("Task 2"), 1000)
+);
 
 Promise.all([promise1, promise2]).then((values) => {
-    console.log("All Promises Resolved:", values);
+  console.log("All Promises Resolved:", values);
 });
 ```
 
 - ✅ If all promises resolve, it returns an array of results.
 - ❌ If any promise fails, Promise.all() rejects immediately.
-
 
 **5. Promise.race() – First Resolved Promise Wins**
 
@@ -3628,10 +3631,10 @@ Returns the first settled (resolved/rejected) promise.
 
 ```javascript
 Promise.race([
-    new Promise((resolve) => setTimeout(() => resolve("Fastest"), 1000)),
-    new Promise((resolve) => setTimeout(() => resolve("Slow"), 2000)),
+  new Promise((resolve) => setTimeout(() => resolve("Fastest"), 1000)),
+  new Promise((resolve) => setTimeout(() => resolve("Slow"), 2000)),
 ]).then((value) => {
-    console.log("First Resolved:", value);
+  console.log("First Resolved:", value);
 });
 ```
 
@@ -3645,12 +3648,12 @@ A common use case of promises is converting callback-based code into promise-bas
 
 ```javascript
 function delay(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 delay(2000).then(() => console.log("Executed after 2 seconds"));
-
 ```
+
 - ✅ This helps avoid callback hell.
 
 **7. Async/Await with Promises**
@@ -3659,14 +3662,14 @@ Promises work well with async/await, making async code look synchronous.
 
 ```javascript
 async function fetchData() {
-    try {
-        let response = await new Promise((resolve) =>
-            setTimeout(() => resolve("Data received"), 2000)
-        );
-        console.log(response);
-    } catch (error) {
-        console.log("Error:", error);
-    }
+  try {
+    let response = await new Promise((resolve) =>
+      setTimeout(() => resolve("Data received"), 2000)
+    );
+    console.log(response);
+  } catch (error) {
+    console.log("Error:", error);
+  }
 }
 
 fetchData();
@@ -3675,6 +3678,125 @@ fetchData();
 - ✅ await waits for the promise to resolve.
 - ✅ try-catch handles errors gracefully.
 
+[🔝 Back to Top](#table-of-contents)
 
+## 34. Async/Await in JavaScript
+
+async/await is a modern way to handle asynchronous code in JavaScript. It simplifies working with Promises and makes asynchronous code look more like synchronous code.
+
+**1. Understanding async and await**
+
+| Keyword | Purpose                                                    |
+| ------- | ---------------------------------------------------------- |
+| `async` | Defines a function that always returns a promise.          |
+| `await` | Waits for a promise to resolve inside an `async` function. |
+
+**2. Example of async/await**
+
+```javascript
+async function fetchData() {
+  return "Hello, World!";
+}
+
+fetchData().then(console.log); // Output: Hello, World!
+```
+
+- ✅ The function fetchData automatically returns a Promise because it is marked async.
+
+**3. Using await to Handle Promises**
+
+await is used to pause execution until a promise resolves.
+
+```javascript
+function fetchData() {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve("Data received!"), 2000);
+  });
+}
+
+async function getData() {
+  console.log("Fetching data...");
+  let result = await fetchData();
+  console.log(result);
+}
+
+getData();
+```
+
+`Output:`
+
+```javascript
+Fetching data...
+(Data appears after 2 seconds)
+Data received!
+```
+
+- ✅ await waits for the promise to resolve before moving to the next line.
+
+**4. Handling Errors in async/await with try-catch**
+
+```javascript
+async function fetchData() {
+  try {
+    let response = await fetch("invalid-url"); // This will fail
+    let data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.log("Error:", error.message);
+  }
+}
+
+fetchData();
+```
+
+- ✅ try-catch handles errors gracefully in async functions.
+
+**5. Parallel Execution using Promise.all() in async/await**
+
+To improve performance, we can execute multiple promises simultaneously.
+
+```javascript
+async function fetchAllData() {
+  let [data1, data2] = await Promise.all([
+    fetch("https://jsonplaceholder.typicode.com/todos/1").then((res) =>
+      res.json()
+    ),
+    fetch("https://jsonplaceholder.typicode.com/todos/2").then((res) =>
+      res.json()
+    ),
+  ]);
+
+  console.log(data1, data2);
+}
+
+fetchAllData();
+```
+
+- ✅ Promise.all() executes requests in parallel instead of sequentially.
+
+**6. await Inside Loops**
+
+Using await inside loops must be done carefully to avoid unnecessary delays.
+
+❌ Bad Approach (Executes One by One)
+
+```javascript
+async function processItems(items) {
+  for (let item of items) {
+    await fetchData(item); // Each request waits for the previous one to complete
+  }
+}
+```
+
+✅ Optimized Approach (Executes in Parallel)
+
+```javascript
+async function processItems(items) {
+  let promises = items.map(fetchData);
+  await Promise.all(promises);
+}
+```
+
+- ✅ This ensures all fetch operations run simultaneously.
 
 [🔝 Back to Top](#table-of-contents)
