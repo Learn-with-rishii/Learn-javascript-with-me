@@ -38,6 +38,7 @@
 | 30  | [Spread and Rest Operators in JavaScript](#30-spread-and-rest-operators-in-javascript)                   |
 | 31  | [ES6+ Features in JavaScript](#31-es6-features-in-javascript)                                            |
 | 32  | [Error Handling in JavaScript](#32-error-handling-in-javascript)                                         |
+| 33  | [Promises in JavaScript ](#33-promises-in-javascript)                                                    |
 
 <!-- TOC_END -->
 
@@ -3516,5 +3517,164 @@ fetchData();
 ```
 
 - ✅ catch handles async errors inside an async function.
+
+[🔝 Back to Top](#table-of-contents)
+
+## 33. Promises in JavaScript
+
+A Promise in JavaScript is an object that represents the eventual completion (or failure) of an asynchronous operation. It helps in handling asynchronous operations in a cleaner way compared to callback functions.
+
+**1. Understanding Promises**
+
+`Promise States in JavaScript`
+
+| State         | Description                                    |
+| ------------- | ---------------------------------------------- |
+| **Pending**   | Initial state, neither fulfilled nor rejected. |
+| **Fulfilled** | The operation completed successfully.          |
+| **Rejected**  | The operation failed.                          |
+
+` Basic Syntax of a Promise`
+
+```javascript
+const myPromise = new Promise((resolve, reject) => {
+  let success = true; // Change this to false to test rejection
+  if (success) {
+    resolve("Operation Successful!");
+  } else {
+    reject("Operation Failed!");
+  }
+});
+```
+
+**2. Handling Promises with `.then()` and `.catch()`**
+
+`Using .then() for Success and .catch() for Errors`
+
+```javascript
+const myPromise = new Promise((resolve, reject) => {
+  let success = true; // Change this to false to test rejection
+  if (success) {
+    resolve("Operation Successful!");
+  } else {
+    reject("Operation Failed!");
+  }
+});
+
+myPromise
+  .then((message) => {
+    console.log("Success:", message);
+  })
+  .catch((error) => {
+    console.log("Error:", error);
+  });
+```
+
+- ✅ .then() executes if the promise is resolved.
+- ✅ .catch() executes if the promise is rejected.
+
+**3. Chaining Promises**
+
+Multiple .then() can be chained to handle sequential asynchronous tasks.
+
+```javascript
+new Promise((resolve) => {
+    setTimeout(() => resolve(10), 1000);
+})
+    .then((num) => {
+        console.log("First:", num);
+        return num * 2;
+    })
+    .then((num) => {
+        console.log("Second:", num);
+        return num * 3;
+    })
+    .then((num) => {
+        console.log("Third:", num);
+    })
+    .catch((error) => console.log("Error:", error));
+```
+- ✅ This ensures operations execute one after another.
+
+`Output:`
+
+```javascript
+First: 10
+Second: 20
+Third: 60
+````
+
+**4. Promise.all() – Execute Multiple Promises in Parallel**
+
+Used when multiple promises need to be resolved before proceeding.
+
+```javascript
+
+const promise1 = new Promise((resolve) => setTimeout(() => resolve("Task 1"), 2000));
+const promise2 = new Promise((resolve) => setTimeout(() => resolve("Task 2"), 1000));
+
+Promise.all([promise1, promise2]).then((values) => {
+    console.log("All Promises Resolved:", values);
+});
+```
+
+- ✅ If all promises resolve, it returns an array of results.
+- ❌ If any promise fails, Promise.all() rejects immediately.
+
+
+**5. Promise.race() – First Resolved Promise Wins**
+
+Returns the first settled (resolved/rejected) promise.
+
+```javascript
+Promise.race([
+    new Promise((resolve) => setTimeout(() => resolve("Fastest"), 1000)),
+    new Promise((resolve) => setTimeout(() => resolve("Slow"), 2000)),
+]).then((value) => {
+    console.log("First Resolved:", value);
+});
+```
+
+- ✅ The fastest promise resolves first.
+
+**6. Converting Callbacks to Promises**
+
+A common use case of promises is converting callback-based code into promise-based.
+
+`Example: setTimeout with Promise`
+
+```javascript
+function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+delay(2000).then(() => console.log("Executed after 2 seconds"));
+
+```
+- ✅ This helps avoid callback hell.
+
+**7. Async/Await with Promises**
+
+Promises work well with async/await, making async code look synchronous.
+
+```javascript
+async function fetchData() {
+    try {
+        let response = await new Promise((resolve) =>
+            setTimeout(() => resolve("Data received"), 2000)
+        );
+        console.log(response);
+    } catch (error) {
+        console.log("Error:", error);
+    }
+}
+
+fetchData();
+```
+
+- ✅ await waits for the promise to resolve.
+- ✅ try-catch handles errors gracefully.
+
+
 
 [🔝 Back to Top](#table-of-contents)
