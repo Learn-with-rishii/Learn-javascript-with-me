@@ -4,42 +4,43 @@
 
 <!-- TOC_START -->
 
-| No. | Questions                                                                                                |
-| --- | -------------------------------------------------------------------------------------------------------- |
-| 1   | [What is JavaScript?](#1-what-is-javascript)                                                             |
-| 2   | [Why Study JavaScript?](#2-why-study-javascript)                                                         |
-| 3   | [JavaScript Variables](#3-javascript-variables)                                                          |
-| 4   | [var/let/const](#4-varletconst)                                                                          |
-| 5   | [Difference Between var, let and const](#5-difference-between-var-let-and-const)                         |
-| 6   | [JavaScript Data Types](#6-javascript-data-types)                                                        |
-| 7   | [What is String](#7-what-is-string)                                                                      |
-| 8   | [What is Array](#8-what-is-array)                                                                        |
-| 9   | [What is forEach](#9-what-is-foreach)                                                                    |
-| 10  | [ Differences Between `forEach()` and Other Loops](#10-differences-between-foreach-and-other-loops)      |
-| 11  | [ What is Map in JavaScript](#11-what-is-map-in-javascript)                                              |
-| 12  | [What is the filter Function](#12-what-is-the-filter-function)                                           |
-| 13  | [ Difference between filter , map , foreach](#13-difference-between-filter--map--foreach)                |
-| 14  | [ What is the reduce Function](#14-what-is-the-reduce-function)                                          |
-| 15  | [Difference Between `reduce()` vs `map()` vs `filter()`](#15-difference-between-reduce-vs-map-vs-filter) |
-| 16  | [What is an Object in JavaScript](#16-what-is-an-object-in-javascript)                                   |
-| 17  | [for...in Loop / for...of Loop / Array.from() in js](#17-forin-loop--forof-loop--arrayfrom-in-js)        |
-| 18  | [ Type Conversion vs Type Coercion](#18-type-conversion-vs-type-coercion)                                |
-| 19  | [What are Loops in JavaScript](#19-what-are-loops-in-javascript)                                         |
-| 20  | [What is a Function in JavaScript](#20-what-is-a-function-in-javascript)                                 |
-| 21  | [Scope in JavaScript](#21-scope-in-javascript)                                                           |
-| 22  | [ Hoisting in JavaScript](#22-hoisting-in-javascript)                                                    |
-| 23  | [Closures in JavaScript](#23closures-in-javascript)                                                      |
-| 24  | [Callback Functions in JavaScript ](#24-callback-functions-in-javascript)                                |
-| 25  | [Higher-Order Functions](#25-higher-order-functions)                                                     |
-| 26  | [Object and Array Destructuring in JavaScript](#26-object-and-array-destructuring-in-javascript)         |
-| 27  | [Array Methods: find(), some(), and every() ](#27-array-methods-find-some-and-every)                     |
-| 28  | [Asynchronous JavaScript setTimeout setInterval](#28-asynchronous-javascript-settimeout-setinterval)     |
-| 29  | [Event Loop in JavaScript](#29-event-loop-in-javascript)                                                 |
-| 30  | [Spread and Rest Operators in JavaScript](#30-spread-and-rest-operators-in-javascript)                   |
-| 31  | [ES6+ Features in JavaScript](#31-es6-features-in-javascript)                                            |
-| 32  | [Error Handling in JavaScript](#32-error-handling-in-javascript)                                         |
-| 33  | [Promises in JavaScript ](#33-promises-in-javascript)                                                    |
-| 34  | [Async/Await in JavaScript](#34-asyncawait-in-javascript)                                                |
+| No. | Questions                                                                                                        |
+| --- | ---------------------------------------------------------------------------------------------------------------- |
+| 1   | [What is JavaScript?](#1-what-is-javascript)                                                                     |
+| 2   | [Why Study JavaScript?](#2-why-study-javascript)                                                                 |
+| 3   | [JavaScript Variables](#3-javascript-variables)                                                                  |
+| 4   | [var/let/const](#4-varletconst)                                                                                  |
+| 5   | [Difference Between var, let and const](#5-difference-between-var-let-and-const)                                 |
+| 6   | [JavaScript Data Types](#6-javascript-data-types)                                                                |
+| 7   | [What is String](#7-what-is-string)                                                                              |
+| 8   | [What is Array](#8-what-is-array)                                                                                |
+| 9   | [What is forEach](#9-what-is-foreach)                                                                            |
+| 10  | [ Differences Between `forEach()` and Other Loops](#10-differences-between-foreach-and-other-loops)              |
+| 11  | [ What is Map in JavaScript](#11-what-is-map-in-javascript)                                                      |
+| 12  | [What is the filter Function](#12-what-is-the-filter-function)                                                   |
+| 13  | [ Difference between filter , map , foreach](#13-difference-between-filter--map--foreach)                        |
+| 14  | [ What is the reduce Function](#14-what-is-the-reduce-function)                                                  |
+| 15  | [Difference Between `reduce()` vs `map()` vs `filter()`](#15-difference-between-reduce-vs-map-vs-filter)         |
+| 16  | [What is an Object in JavaScript](#16-what-is-an-object-in-javascript)                                           |
+| 17  | [for...in Loop / for...of Loop / Array.from() in js](#17-forin-loop--forof-loop--arrayfrom-in-js)                |
+| 18  | [ Type Conversion vs Type Coercion](#18-type-conversion-vs-type-coercion)                                        |
+| 19  | [What are Loops in JavaScript](#19-what-are-loops-in-javascript)                                                 |
+| 20  | [What is a Function in JavaScript](#20-what-is-a-function-in-javascript)                                         |
+| 21  | [Scope in JavaScript](#21-scope-in-javascript)                                                                   |
+| 22  | [ Hoisting in JavaScript](#22-hoisting-in-javascript)                                                            |
+| 23  | [Closures in JavaScript](#23closures-in-javascript)                                                              |
+| 24  | [Callback Functions in JavaScript ](#24-callback-functions-in-javascript)                                        |
+| 25  | [Higher-Order Functions](#25-higher-order-functions)                                                             |
+| 26  | [Object and Array Destructuring in JavaScript](#26-object-and-array-destructuring-in-javascript)                 |
+| 27  | [Array Methods: find(), some(), and every() ](#27-array-methods-find-some-and-every)                             |
+| 28  | [Asynchronous JavaScript setTimeout setInterval](#28-asynchronous-javascript-settimeout-setinterval)             |
+| 29  | [Event Loop in JavaScript](#29-event-loop-in-javascript)                                                         |
+| 30  | [Spread and Rest Operators in JavaScript](#30-spread-and-rest-operators-in-javascript)                           |
+| 31  | [ES6+ Features in JavaScript](#31-es6-features-in-javascript)                                                    |
+| 32  | [Error Handling in JavaScript](#32-error-handling-in-javascript)                                                 |
+| 33  | [Promises in JavaScript ](#33-promises-in-javascript)                                                            |
+| 34  | [Async/Await in JavaScript](#34-asyncawait-in-javascript)                                                        |
+| 35  | [Difference between async/await and .then() in promises](#35-difference-between-asyncawait-and-then-in-promises) |
 
 <!-- TOC_END -->
 
@@ -3799,5 +3800,131 @@ async function processItems(items) {
 ```
 
 - ✅ This ensures all fetch operations run simultaneously.
+
+[🔝 Back to Top](#table-of-contents)
+
+## 35. Difference between async/await and .then() in promises
+
+**1. Syntax & Readability**
+
+- `.then() (Promise Chaining)`
+
+  - Uses method chaining.
+
+  - Can lead to nested code when handling multiple promises.
+
+  ```javascript
+  fetch("https://jsonplaceholder.typicode.com/todos/1")
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.log("Error:", error));
+  ```
+
+- `async/await (Synchronous-like Flow)`
+
+  - Looks more like synchronous code.
+
+  - Easier to read and maintain.
+
+  ```javascript
+  async function fetchData() {
+    try {
+      let response = await fetch(
+        "https://jsonplaceholder.typicode.com/todos/1"
+      );
+      let data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  }
+
+  fetchData();
+  ```
+
+  - ✅ async/await improves readability and avoids callback nesting.
+
+**2. Error Handling**
+
+- `.then().catch()`
+
+  - Uses .catch() at the end to handle errors.
+
+  - If there's an error anywhere in the chain, it goes directly to .catch().
+
+  ```javascript
+  fetch("invalid-url")
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.log("Error:", error.message));
+  ```
+
+- `async/await with try-catch`
+
+  - Requires try-catch inside async functions.
+
+  - Can handle errors locally at each step.
+
+  ```javascript
+  async function fetchData() {
+    try {
+      let response = await fetch("invalid-url");
+      let data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log("Error:", error.message);
+    }
+  }
+
+  fetchData();
+  ```
+
+  - ✅ async/await provides better error handling since errors can be caught at multiple points.
+
+**3. Handling Multiple Promises**
+
+- `.then() (Promise.all)`
+
+```javascript
+Promise.all([
+  fetch("https://jsonplaceholder.typicode.com/todos/1").then((res) =>
+    res.json()
+  ),
+  fetch("https://jsonplaceholder.typicode.com/todos/2").then((res) =>
+    res.json()
+  ),
+]).then(([data1, data2]) => {
+  console.log(data1, data2);
+});
+```
+
+- `async/await (Promise.all with await)`
+
+```javascript
+async function fetchAllData() {
+  let [data1, data2] = await Promise.all([
+    fetch("https://jsonplaceholder.typicode.com/todos/1").then((res) =>
+      res.json()
+    ),
+    fetch("https://jsonplaceholder.typicode.com/todos/2").then((res) =>
+      res.json()
+    ),
+  ]);
+
+  console.log(data1, data2);
+}
+
+fetchAllData();
+```
+
+- ✅ Both approaches can handle multiple promises, but async/await is cleaner.
+
+**4. Execution & Performance**
+
+- `.then()` executes asynchronously but continues execution without waiting for the promise to resolve.
+
+- `async/await` pauses execution at each await until the promise resolves.
+
+- ✅ `Promise.all()` should be used in both cases when executing multiple independent promises to avoid blocking.
 
 [🔝 Back to Top](#table-of-contents)
