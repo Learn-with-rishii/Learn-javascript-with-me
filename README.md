@@ -3878,7 +3878,6 @@ async function processItems(items) {
 
   fetchData();
   ```
-
   - ✅ async/await provides better error handling since errors can be caught at multiple points.
 
 **3. Handling Multiple Promises**
