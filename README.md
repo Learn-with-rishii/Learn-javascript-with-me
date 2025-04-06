@@ -3878,6 +3878,7 @@ async function processItems(items) {
 
   fetchData();
   ```
+
   - ✅ async/await provides better error handling since errors can be caught at multiple points.
 
 **3. Handling Multiple Promises**
@@ -3927,3 +3928,96 @@ fetchAllData();
 - ✅ `Promise.all()` should be used in both cases when executing multiple independent promises to avoid blocking.
 
 [🔝 Back to Top](#table-of-contents)
+
+## 36. Local Storage vs Session Storage in JavaScript
+
+Both Local Storage and Session Storage are part of the Web Storage API. They allow you to store data in the browser and are useful for persisting data across page reloads without using a server.
+
+**1. What is Web Storage?**
+
+Web Storage provides two storage objects:
+
+- localStorage
+
+- sessionStorage
+
+These are key-value pair storage systems where data is stored in strings.
+
+**2. Difference Between Local Storage and Session Storage**
+
+| Feature             | Local Storage              | Session Storage             |
+| ------------------- | -------------------------- | --------------------------- |
+| **Lifetime**        | Until manually cleared     | Until the tab is closed     |
+| **Scope**           | All tabs/windows           | Only the current tab        |
+| **Storage Limit**   | ~5–10MB                    | ~5MB                        |
+| **Accessible From** | Any tab of the same origin | Same tab only               |
+| **Use Case**        | Long-term storage          | Temporary/tab-specific data |
+
+**3. Basic Syntax**
+
+`✅ Set Data`
+
+```javascript
+localStorage.setItem("name", "Rishabh");
+sessionStorage.setItem("token", "abc123");
+```
+
+`✅ Get Data`
+
+```javascript
+let name = localStorage.getItem("name");
+let token = sessionStorage.getItem("token");
+```
+
+`✅ Remove Data`
+
+```javascript
+localStorage.removeItem("name");
+sessionStorage.removeItem("token");
+```
+
+`✅ Clear All Data`
+
+```javascript
+localStorage.clear();
+sessionStorage.clear();
+```
+
+**4. Data Stored as Strings**
+
+All values in localStorage/sessionStorage are stored as strings.
+
+```javascript
+localStorage.setItem("age", 25);
+console.log(typeof localStorage.getItem("age")); // string
+```
+
+👉 To store complex data like objects or arrays, use JSON.stringify() and JSON.parse():
+
+```javascript
+// Store
+let user = { name: "Rishabh", age: 22 };
+localStorage.setItem("user", JSON.stringify(user));
+
+// Retrieve
+let data = JSON.parse(localStorage.getItem("user"));
+console.log(data.name); // Rishabh
+```
+
+**5. Practical Use Cases**
+
+`✅ Local Storage:`
+
+- Save theme preferences (dark/light)
+
+- Store login tokens (with caution!)
+
+- Caching API results
+
+`✅ Session Storage:`
+
+- Store form data while navigating
+
+- Temporary authentication (1 session)
+
+- Tab-specific data
